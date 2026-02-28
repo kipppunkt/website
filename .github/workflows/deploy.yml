@@ -16,6 +16,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build
         run: npm ci && npm run build
+      - name: List Pages projects
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project list
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
