@@ -19,3 +19,7 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+.kipppunkt/workspaces/
+.kipppunkt/build-state.json
+.kipppunkt/refine-state.json
+.kipppunkt/license-cache.json

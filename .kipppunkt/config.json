@@ -1,0 +1,4 @@
+{
+  "pollIntervalMinutes": 15,
+  "maxConcurrency": 2
+}
