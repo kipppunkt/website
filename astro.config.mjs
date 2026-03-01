@@ -8,19 +8,30 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   integrations: [
       starlight({
-          title: 'My Docs',
-          social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+          title: 'kipppunkt',
+          social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/kipppunkt' }],
           sidebar: [
               {
-                  label: 'Guides',
+                  label: 'Home',
                   items: [
-                      // Each item here is one entry in the navigation menu.
-                      { label: 'Example Guide', slug: 'guides/example' },
+                      { slug: '' },
                   ],
+              },
+              {
+                  label: 'Get started in 5 min',
+                  autogenerate: { directory: 'get-started' },
+              },
+              {
+                  label: 'Guides',
+                  autogenerate: { directory: 'guides' },
               },
               {
                   label: 'Reference',
                   autogenerate: { directory: 'reference' },
+              },
+              {
+                  label: 'Concepts',
+                  autogenerate: { directory: 'concepts' },
               },
           ],
       }),
