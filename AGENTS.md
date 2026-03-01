@@ -11,6 +11,8 @@ This repo uses Astro with the starlight theme. You can use the `gh` CLI to fetch
 - Astro docs: https://github.com/withastro/docs/tree/main/src/content/docs/en
 - starlight docs: https://github.com/withastro/starlight/tree/main/docs/src/content/docs
 
+This repo follows the Diataxis framework for documentation. You can use the `gh` CLI to fetch their docs: https://github.com/evildmp/diataxis-documentation-framework
+
 ## General
 
 - When talking with the user, be extremely concise. Sacrifice grammar for the sake of concision.
