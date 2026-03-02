@@ -8,11 +8,7 @@ Before running kipppunkt for the first time, make sure you have the following in
 
 ## AI coding agent
 
-kipppunkt needs an AI coding agent to do the actual implementation work. Install [Claude Code](https://docs.anthropic.com/en/docs/claude-code):
-
-```bash
-npm install -g @anthropic-ai/claude-code
-```
+kipppunkt works with any AI coding agent CLI, such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex](https://github.com/openai/codex), or [OpenCode](https://github.com/sst/opencode). Install whichever agent you prefer and make sure it is available on your `PATH`.
 
 ## GitHub CLI
 
