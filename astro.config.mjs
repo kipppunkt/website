@@ -21,7 +21,7 @@ export default defineConfig({
                   ],
               },
               {
-                  label: 'Get started in 5 min',
+                  label: 'Start in 5 minutes',
                   autogenerate: { directory: 'get-started' },
               },
               {
