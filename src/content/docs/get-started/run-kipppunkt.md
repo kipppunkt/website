@@ -1,7 +1,53 @@
 ---
-title: Run kipppunkt
+title: "Run the kipp•punkt agent"
 sidebar:
   order: 3
 ---
 
-TBD
+With the [prerequisites](/get-started/prerequisites/) in place, you're ready to start the agent.
+
+## Set `GH_TOKEN`
+
+Export the bot account's personal access token in the shell where you'll run kipppunkt:
+
+```bash
+export GH_TOKEN=ghp_your_bot_token_here
+```
+
+## Start kipppunkt
+
+Run the orchestrator with [Codex](https://github.com/openai/codex) as the AI harness:
+
+```bash
+npx @kipppunkt/build start \
+  --command "codex exec {prompt} --dangerously-bypass-approvals-and-sandbox"
+```
+
+:::note
+Other harnesses work too — Claude Code, OpenCode, and Copilot CLI are all supported. See the [CLI commands](/reference/cli-commands/) reference for the full list of harness command templates.
+:::
+
+:::caution
+The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test run, but for any permanent setup you should run the agent in a sandbox. See [Sandboxing by harness](/reference/sandboxing-by-harness/) for recommended configurations.
+:::
+
+## Verify it's running
+
+Once started, the orchestrator logs its status to stdout. You should see output indicating it is polling for work:
+
+```
+[info] Orchestrator listening on http://localhost:2309
+[info] Polling for tasks...
+```
+
+You can also query the orchestrator API to confirm it's up:
+
+```bash
+curl http://localhost:2309/tasks
+```
+
+This should return a JSON array of tasks (or an empty array if no requirements have been loaded yet).
+
+## Next steps
+
+With the agent running, head to [Ship your first idea](/get-started/ship-your-first-idea/) to walk through the full issue-to-merge workflow.
