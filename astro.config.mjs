@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightThemeBlack from 'starlight-theme-black';
 
 import cloudflare from '@astrojs/cloudflare';
 
@@ -8,10 +9,19 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   integrations: [
       starlight({
-          title: 'kipppunkt',
+          title: 'kipp•punkt',
+          plugins: [
+              starlightThemeBlack({
+                  footerText: '',
+              }),
+          ],
           components: {
               PageTitle: './src/components/PageTitle.astro',
+              SiteTitle: './src/components/SiteTitle.astro',
           },
+          customCss: [
+              './src/styles/fonts.css',
+          ],
           social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/kipppunkt' }],
           sidebar: [
               {

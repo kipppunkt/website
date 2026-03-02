@@ -1,0 +1,28 @@
+@font-face {
+	font-family: 'DM Mono';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/DMMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DM Mono';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/DMMono-Italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DM Mono';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('/fonts/DMMono-Medium.ttf') format('truetype');
+}
+
+:root {
+	--sl-font: 'DM Mono', monospace;
+	--sl-font-mono: 'DM Mono', monospace;
+}
