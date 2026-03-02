@@ -1,0 +1,84 @@
+---
+const route = Astro.locals.starlightRoute;
+const isHome = route.id === '';
+const body = route.entry.body ?? '';
+---
+
+<div class="page-title-row">
+	<h1 id="_top">{route.entry.data.title}</h1>
+	{!isHome && (
+		<button class="copy-md-btn" data-md={body} aria-label="Copy page as Markdown">
+			<svg class="icon-copy" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+				<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+			</svg>
+			<svg class="icon-check" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+				<polyline points="20 6 9 17 4 12"></polyline>
+			</svg>
+		</button>
+	)}
+</div>
+
+<style>
+	@layer starlight.custom {
+		h1 {
+			margin-top: 1rem;
+			font-size: var(--sl-text-h1);
+			line-height: var(--sl-line-height-headings);
+			font-weight: 600;
+			color: var(--sl-color-white);
+		}
+
+		.page-title-row {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 0.75rem;
+		}
+
+		.copy-md-btn {
+			flex-shrink: 0;
+			background: none;
+			border: 1px solid var(--sl-color-gray-5);
+			border-radius: 0.375rem;
+			padding: 0.25rem 0.375rem;
+			color: var(--sl-color-gray-3);
+			cursor: pointer;
+			line-height: 1;
+			transition: color 0.15s, border-color 0.15s;
+		}
+
+		.copy-md-btn:hover {
+			color: var(--sl-color-white);
+			border-color: var(--sl-color-gray-3);
+		}
+
+		.copy-md-btn.copied {
+			color: var(--sl-color-green);
+			border-color: var(--sl-color-green);
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('click', async (e) => {
+		const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.copy-md-btn');
+		if (!btn) return;
+		const md = btn.dataset.md ?? '';
+		try {
+			await navigator.clipboard.writeText(md);
+			const iconCopy = btn.querySelector<SVGElement>('.icon-copy')!;
+			const iconCheck = btn.querySelector<SVGElement>('.icon-check')!;
+			iconCopy.style.display = 'none';
+			iconCheck.style.display = '';
+			btn.classList.add('copied');
+			setTimeout(() => {
+				iconCopy.style.display = '';
+				iconCheck.style.display = 'none';
+				btn.classList.remove('copied');
+			}, 2000);
+		} catch {
+			// Clipboard API not available
+		}
+	});
+</script>
