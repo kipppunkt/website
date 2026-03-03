@@ -1,0 +1,29 @@
+---
+const { siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<a href={siteTitleHref} class="site-title">
+	<span class="title-text">kipp•punkt</span>
+</a>
+
+<style>
+	.site-title {
+		display: flex;
+		align-items: center;
+		margin-right: 1rem;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	@media (min-width: 1024px) {
+		.site-title {
+			margin-right: 1.5rem;
+		}
+	}
+
+	.title-text {
+		font-family: 'DM Mono', monospace;
+		font-weight: 500;
+		font-size: 1rem;
+	}
+</style>
