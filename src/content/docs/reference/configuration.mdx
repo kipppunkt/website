@@ -4,6 +4,8 @@ sidebar:
   order: 2
 ---
 
+import TableSaw from '../../../components/TableSaw.astro';
+
 kipppunkt reads runtime configuration from an optional JSON file.
 
 ## Config file location
@@ -18,6 +20,7 @@ If no config file is found, the orchestrator uses sensible defaults for all fiel
 
 ## Config fields
 
+<TableSaw>
 | Field | Type | Default | Description |
 |---|---|---|---|
 | `baseBranch` | `string` | `"main"` | Base branch used for orchestrator reset and merge-conflict instructions. |
@@ -33,6 +36,7 @@ If no config file is found, the orchestrator uses sensible defaults for all fiel
 | `shutdownOnTaskFailed` | `boolean` | `false` | When `true`, gracefully shut down when a task enters `failed` state. |
 | `mergeConflictResolution` | `"never"` \| `"withThreads"` \| `"always"` | `"withThreads"` | Controls automatic merge-conflict resolution. `never`: no automatic resolution. `withThreads`: attempt resolution when actionable threads exist. `always`: invoke the agent for conflict resolution even without threads. |
 | `orchestratorUrl` | `string` | `"http://localhost:2309"` | URL of the orchestrator API endpoint. |
+</TableSaw>
 
 ## Full example
 
