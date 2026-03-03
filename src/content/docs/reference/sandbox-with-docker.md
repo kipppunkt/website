@@ -15,8 +15,7 @@ Rootless Docker provides filesystem isolation only. The container retains **full
 - A Linux system with systemd
 - Docker Engine (rootless setup — see below)
 - A [bot GitHub account](/get-started/prerequisites/) with `GH_TOKEN` ready
-- An AI harness API key (e.g. `ANTHROPIC_API_KEY` for Claude Code) — or log in interactively on first run
-- A kipppunkt license key (`KIPPPUNKT_LICENSE`)
+- A kipppunkt license key (`KIPPPUNKT_LICENSE`) — optional, only needed for premium features
 
 ## Set up rootless Docker
 
@@ -89,21 +88,50 @@ docker build -t kipppunkt-sandbox:latest .
 
 Adapt the harness install line if you use a different agent (e.g. Codex, OpenCode).
 
-## Launch kipppunkt inside the container
+## Log in to your AI harness
+
+Create a named container and log in interactively. This persists credentials inside the container so kipppunkt can use them on subsequent runs.
 
 ```bash
-docker run --rm -it \
+docker create --name kipppunkt \
   --cap-drop ALL \
   --security-opt no-new-privileges \
   -v "$PROJECT_PATH":/workspace:rw \
   -e GH_TOKEN="$GH_TOKEN" \
-  -e ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" \
   -e KIPPPUNKT_LICENSE="$KIPPPUNKT_LICENSE" \
   kipppunkt-sandbox:latest \
   kipppunkt-agent start --command "claude -p {prompt} --dangerously-skip-permissions"
 ```
 
 Set `PROJECT_PATH` to the absolute path of your repository on the host.
+
+Then start the container in interactive mode and follow your harness's login flow:
+
+```bash
+docker start -ai kipppunkt
+```
+
+Once login succeeds, stop the container with `Ctrl+C`. The credentials are now stored inside the named container.
+
+## Launch kipppunkt
+
+Start the container:
+
+```bash
+docker start kipppunkt
+```
+
+To follow logs:
+
+```bash
+docker logs -f kipppunkt
+```
+
+Stop with:
+
+```bash
+docker stop kipppunkt
+```
 
 ### What the flags do
 
@@ -118,7 +146,6 @@ Set `PROJECT_PATH` to the absolute path of your repository on the host.
 | Variable | Purpose |
 |---|---|
 | `GH_TOKEN` | Authenticates the bot GitHub account for PR operations. |
-| `ANTHROPIC_API_KEY` | Authenticates the AI harness (Claude Code in this example). |
 | `KIPPPUNKT_LICENSE` | Activates your kipppunkt license inside the container. Optional — only needed for premium features. |
 
 Both the orchestrator and the AI harness agent run inside the container. The host only provides the mounted project directory and forwarded environment variables.
