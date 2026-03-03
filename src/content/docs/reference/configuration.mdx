@@ -1,0 +1,63 @@
+---
+title: Configuration
+sidebar:
+  order: 2
+---
+
+import TableSaw from '../../../components/TableSaw.astro';
+
+kipppunkt reads runtime configuration from an optional JSON file.
+
+## Config file location
+
+By default, the orchestrator looks for a config file at `.kipppunkt/config.json` relative to your repository root. To use a different path, pass `--config-path`:
+
+```bash
+kipppunkt-build start --command "..." --config-path ./my-config.json
+```
+
+If no config file is found, the orchestrator uses sensible defaults for all fields.
+
+## Config fields
+
+<TableSaw>
+| Field | Type | Default | Description |
+|---|---|---|---|
+| `baseBranch` | `string` | `"main"` | Base branch used for orchestrator reset and merge-conflict instructions. |
+| `pollIntervalMinutes` | `number` | `5` | Minutes between poll ticks. Must be positive. |
+| `maxConcurrency` | `number` | `1` | Maximum number of tasks under active development simultaneously. Must be a positive integer. |
+| `maxFailedAttempts` | `number` | `3` | Failed-attempt threshold before a task transitions to `failed`. Must be a positive integer. |
+| `stateDir` | `string` | `"./.kipppunkt"` | Directory where the orchestrator persists `build-state.json` and `refine-state.json`. |
+| `logLevel` | `"error"` \| `"warn"` \| `"info"` \| `"debug"` | `"info"` | Log verbosity. |
+| `pretext` | `string` | `""` | Project-wide instructions injected into every agent prompt. |
+| `postWorkspaceCreation` | `string` | `""` | Shell command run in the workspace directory immediately after workspace creation and before the implement agent runs. |
+| `allowlist` | `string[]` | `[]` | GitHub usernames allowed to trigger agent reactions via PR comments. An empty list permits any user. |
+| `requireMention` | `boolean` | `false` | When `true`, a thread is only actionable if the latest comment @mentions the bot. Useful to avoid reacting to every comment. |
+| `shutdownOnTaskFailed` | `boolean` | `false` | When `true`, gracefully shut down when a task enters `failed` state. |
+| `mergeConflictResolution` | `"never"` \| `"withThreads"` \| `"always"` | `"withThreads"` | Controls automatic merge-conflict resolution. `never`: no automatic resolution. `withThreads`: attempt resolution when actionable threads exist. `always`: invoke the agent for conflict resolution even without threads. |
+| `orchestratorUrl` | `string` | `"http://localhost:2309"` | URL of the orchestrator API endpoint. |
+</TableSaw>
+
+## Full example
+
+```json
+{
+  "baseBranch": "main",
+  "pollIntervalMinutes": 5,
+  "maxConcurrency": 1,
+  "maxFailedAttempts": 3,
+  "stateDir": "./.kipppunkt",
+  "logLevel": "info",
+  "pretext": "Always use TypeScript",
+  "postWorkspaceCreation": "rm -rf node_modules && pnpm install",
+  "allowlist": ["alice", "bob"],
+  "requireMention": false,
+  "shutdownOnTaskFailed": false,
+  "mergeConflictResolution": "withThreads",
+  "orchestratorUrl": "http://localhost:2222"
+}
+```
+
+:::tip
+Most projects only need to set a few fields. Start with the defaults and override only what you need.
+:::
