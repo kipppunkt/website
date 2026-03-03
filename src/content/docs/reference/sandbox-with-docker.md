@@ -15,7 +15,7 @@ Rootless Docker provides filesystem isolation only. The container retains **full
 - A Linux system with systemd
 - Docker Engine (rootless setup — see below)
 - A [bot GitHub account](/get-started/prerequisites/) with `GH_TOKEN` ready
-- An AI harness API key (e.g. `ANTHROPIC_API_KEY` for Claude Code)
+- An AI harness API key (e.g. `ANTHROPIC_API_KEY` for Claude Code) — or log in interactively on first run
 - A kipppunkt license key (`KIPPPUNKT_LICENSE`)
 
 ## Set up rootless Docker
@@ -75,8 +75,8 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
     | tee /etc/apt/sources.list.d/github-cli-stable.list > /dev/null \
     && apt-get update && apt-get install -y gh
 
-# Install the AI harness (e.g. Claude Code)
-RUN npm install -g @anthropic-ai/claude-code
+# Install kipppunkt and the AI harness (e.g. Claude Code)
+RUN npm install -g @kipppunkt/agent @anthropic-ai/claude-code
 
 WORKDIR /workspace
 ```
@@ -100,7 +100,7 @@ docker run --rm -it \
   -e ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" \
   -e KIPPPUNKT_LICENSE="$KIPPPUNKT_LICENSE" \
   kipppunkt-sandbox:latest \
-  npx @kipppunkt/build start --command "claude -p {prompt} --dangerously-skip-permissions"
+  kipppunkt-agent start --command "claude -p {prompt} --dangerously-skip-permissions"
 ```
 
 Set `PROJECT_PATH` to the absolute path of your repository on the host.
