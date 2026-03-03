@@ -4,76 +4,46 @@ sidebar:
   order: 3
 ---
 
-Your issue is the starting signal for the whole loop:
+Your issue starts the loop:
 
 `issue -> refine -> requirements -> build -> PR -> review`
 
-You do not need a perfect issue to start. The refine agent is there to help you shape rough ideas into good requirements through conversation. These tips just help you get better results faster.
+In kipppunkt, you do not need a perfect issue up front. You can start with a rough idea, and the refine agent will guide you to a clear, implementable requirement through comments.
 
-## 1. Describe the outcome declaratively
+:::tip
+The recommendations below are speed and quality levers, not prerequisites. If your issue is still rough, open it anyway and refine with the agent.
+:::
 
-State what should be true when the work is done, not how to code it.
+## Start with outcome, not implementation
 
-- Describe user-visible behavior.
-- Add acceptance criteria you can verify from the outside.
-- Avoid implementation instructions unless they are real constraints.
+Describe what should be true when the feature is done. Focus on user-visible behavior and concrete acceptance criteria, not code-level instructions.
 
-Good:
+If you already know technical constraints, include them. If not, keep it declarative and let refinement shape the details.
 
-- "Users can archive a project from the project settings page."
-- "Archived projects no longer appear in the active project list."
+## Keep scope to one feature
 
-Weak:
+One issue should target one feature-level outcome. If a request is too broad, the refine agent will call that out and suggest splitting it into sub-issues so each requirement stays coherent and implementable.
 
-- "Add an `archiveProject()` function in `ProjectService`."
-- "Use React Query mutation with optimistic updates."
+This keeps refinement focused and avoids weak, blended requirements that slow implementation and review.
 
-## 2. Keep one feature per issue
+## Add context that changes decisions
 
-One issue should represent one feature-level outcome.
+Share only context that affects the requirement: current behavior, hard constraints, and domain rules. The refine agent will autonomously inspect the codebase when needed, but you can speed this up by pointing to relevant files or folders, for example `docs/`, `src/billing/`, or a related issue.
 
-- Split unrelated changes into separate issues.
-- If work depends on another feature, link the related issue.
-- Keep each issue reviewable on its own.
+## Refine in back-and-forth until intent is exact
 
-This keeps refinement focused and prevents broad, low-signal requirements.
+After issue creation, the refine agent asks clarifying questions, surfaces ambiguities, and proposes requirement wording. Your job is to confirm, correct, and sharpen intent until the requirement matches what you actually want built.
 
-## 3. Include context and constraints that actually matter
+Typical flow:
 
-Give the refine agent the information it needs to ask the right questions.
+- You open an issue with a rough idea.
+- The refine agent asks focused follow-up questions.
+- You answer, add missing constraints, and confirm edge-case behavior.
+- The refine agent produces a final requirement for approval.
+- The build agent implements against that approved requirement.
 
-- Relevant context: current behavior, user role, affected workflow.
-- Real constraints: compliance, performance bounds, compatibility needs, deadlines.
-- Useful artifacts: screenshots, docs, prior decisions, related issues.
+Issue quality directly impacts build quality: clear requirements produce cleaner implementations and faster review loops.
 
-Skip noise. If context does not influence the requirement, leave it out.
+## Avoid common pitfalls
 
-## 4. Use refinement as the quality gate
-
-After issue creation, refinement is where quality is made.
-
-- Answer clarifying questions directly.
-- Confirm edge cases and failure behavior.
-- Resolve ambiguity before approving requirements.
-
-The build agent implements against the approved requirements. If requirements are vague, implementation and review quality drop.
-
-## Common pitfalls to avoid
-
-- Bundling multiple features in one issue.
-- Writing only technical steps instead of desired behavior.
-- Hiding critical constraints in late comments.
-- Leaving key terms undefined ("fast", "intuitive", "robust").
-- Approving requirements before they clearly match your intent.
-
-## Quick issue checklist
-
-Before opening an issue, verify:
-
-- The outcome is clear and user-facing.
-- The issue contains one feature, not a batch.
-- Acceptance criteria are concrete and testable.
-- Relevant constraints and context are included.
-- Unknowns are explicit so refinement can resolve them.
-
-If you skip some of this, still start. The refine agent will guide you toward a solid requirement through follow-up questions. Better issue quality just shortens that path.
+Avoid packing multiple features into one issue, hiding key constraints in late comments, or using vague terms like "fast" without a measurable meaning. Also avoid approving requirements before the wording clearly matches your intent.
