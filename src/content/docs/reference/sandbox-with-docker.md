@@ -119,7 +119,7 @@ Set `PROJECT_PATH` to the absolute path of your repository on the host.
 |---|---|
 | `GH_TOKEN` | Authenticates the bot GitHub account for PR operations. |
 | `ANTHROPIC_API_KEY` | Authenticates the AI harness (Claude Code in this example). |
-| `KIPPPUNKT_LICENSE` | Activates your kipppunkt license inside the container. |
+| `KIPPPUNKT_LICENSE` | Activates your kipppunkt license inside the container. Optional — only needed for premium features. |
 
 Both the orchestrator and the AI harness agent run inside the container. The host only provides the mounted project directory and forwarded environment variables.
 
