@@ -1,7 +1,7 @@
 ---
 title: Run effective review loops
 sidebar:
-  order: 4
+  order: 3
 ---
 
 TBD
