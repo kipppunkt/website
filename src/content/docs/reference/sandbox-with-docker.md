@@ -63,8 +63,10 @@ Create a `Dockerfile` in your project:
 ```dockerfile
 FROM ubuntu:24.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y \
-    curl git nodejs npm ripgrep jq \
+    ca-certificates curl git gnupg nodejs npm ripgrep jq \
     && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI
