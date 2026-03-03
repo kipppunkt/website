@@ -1,5 +1,5 @@
 ---
-title: Set up for solo projects
+title: Daily workflow
 sidebar:
   order: 1
 ---

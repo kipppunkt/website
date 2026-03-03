@@ -25,10 +25,7 @@
 
 ## Guides
 
-- **Set up for solo projects**: Shows opinionated defaults and habits for a single developer workflow.
-- **Set up for team repositories**: Covers collaboration conventions for shared repos and reviewer coordination.
-- **Shape ideas effectively**: Explains how to formulate issues so refinement and implementation quality stay high.
-- **Run effective review loops**: Teaches how to give feedback that drives fast, high-signal iteration cycles.
+see @./guides.md
 
 ## Reference
 

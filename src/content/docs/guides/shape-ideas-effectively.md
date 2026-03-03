@@ -1,7 +1,7 @@
 ---
 title: Shape ideas effectively
 sidebar:
-  order: 3
+  order: 2
 ---
 
 TBD
