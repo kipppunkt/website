@@ -96,16 +96,14 @@ Create a named container and log in interactively. This persists credentials ins
 docker create --name kipppunkt \
   --cap-drop ALL \
   --security-opt no-new-privileges \
-  -v "$PROJECT_PATH":/workspace:rw \
+  -v "$(pwd)":/workspace:rw \
   -e GH_TOKEN="$GH_TOKEN" \
   -e KIPPPUNKT_LICENSE="$KIPPPUNKT_LICENSE" \
   kipppunkt-sandbox:latest \
   kipppunkt-agent start --command "claude -p {prompt} --dangerously-skip-permissions"
 ```
 
-Set `PROJECT_PATH` to the absolute path of your repository on the host.
-
-Then start the container in interactive mode and follow your harness's login flow:
+Run this from your project directory. Then start the container in interactive mode and follow your harness's login flow:
 
 ```bash
 docker start -ai kipppunkt
@@ -139,7 +137,7 @@ docker stop kipppunkt
 |---|---|
 | `--cap-drop ALL` | Removes all Linux capabilities from the container. |
 | `--security-opt no-new-privileges` | Prevents any process inside the container from gaining additional privileges. |
-| `-v "$PROJECT_PATH":/workspace:rw` | Mounts your project directory as the only writable path. |
+| `-v "$(pwd)":/workspace:rw` | Mounts your project directory as the only writable path. |
 
 ### Environment variables
 
