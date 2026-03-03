@@ -4,73 +4,36 @@ sidebar:
   order: 1
 ---
 
-This guide defines the repeatable day-to-day loop for working with kipp•punkt. It builds on [Ship your first idea](/get-started/ship-your-first-idea/) — if you haven't shipped one yet, start there.
+This guide covers the repeatable loop for day-to-day work with kipp•punkt. It assumes you've already [shipped your first idea](/get-started/ship-your-first-idea/).
 
-## Core flow
+## The loop
 
-Every feature follows the same cycle:
+Every feature follows the same cycle: **issue → refine → approve → implement → review → merge**.
 
-1. **Create a GitHub issue** and assign it to the bot user. Mentioning the agent in the issue body or comments is also supported.
-2. **Refine until approved** — the refine agent responds whenever your comment is the latest and drives the issue toward implementation-ready scope. If scope is too large, it may propose splitting into sub-issues. When ready, it proposes a structured requirement table. Review it and explicitly approve in a comment to enqueue.
-3. **Implement, review, merge** — after approval, the task is queued and implemented. A PR is opened. You review and leave feedback. The agent responds and/or pushes fixes. You merge when satisfied, and the issue closes automatically.
+### Create an issue
 
-:::note
-The main failure mode is weak context engineering. Keep `AGENTS.md` and your focused context docs current so refine and build decisions stay aligned.
-:::
+Open a GitHub issue and assign it to the bot user. Before creating it, decide whether the issue is ready to start — if it depends on in-flight work, defer it. If it covers multiple distinct outcomes, split it into separate issues first so each maps to one PR.
 
-## Issue triage
+Keep your active pipeline narrow. One or two issues in refinement at a time is enough — more creates review pressure you'll struggle to keep up with. Match `maxConcurrency` to what you can realistically review.
 
-Before creating an issue, decide:
+### Refine and approve
 
-- **Start now** — well-scoped, independent of in-flight work.
-- **Defer** — depends on something not yet merged, or not thought through enough.
-- **Split first** — covers multiple distinct outcomes. Break it into separate issues so each maps to a single PR.
+The refine agent drives the issue toward a structured requirement table. Answer its questions, correct its proposals, and add context it can't infer on its own — file paths, design links, related issues.
 
-## WIP limits
+Before approving for enqueue, verify the requirement table is specific enough to review a PR against: testable acceptance criteria, scope that fits a single PR, relevant context referenced, and no implicit dependencies on unmerged work.
 
-Limit how many issues move through the loop at once:
+### Review and merge
 
-- **1–2 issues in refinement** — so you can respond without excessive context-switching.
-- **`maxConcurrency` active implementations** — match this to what you can realistically review. More parallel PRs means more review pressure.
+The agent opens a PR. Review it like any other PR — leave comments on files or code lines (general PR-level comments are not consumed by the agent).
 
-If the review queue grows faster than you can handle, pause new issues until you catch up.
+Batch your feedback into one review pass rather than leaving comments one by one. Each round-trip triggers a new agent cycle, so fewer passes means faster convergence. Use action-oriented comments for code changes (`drop the last commit`) and prefix discussion with `Question:` or `Let's discuss!` so the agent knows not to push code.
 
-## Cadence
+Merge when satisfied. The issue closes automatically.
 
-Define when you check issue threads, review PRs, and merge. The agent waits for your input, so predictable response windows keep the pipeline moving.
+## When things fail
 
-## Approval policy
+The agent posts a comment on the issue when a task fails. Check logs to identify the root cause, then either tell the agent to retry in the issue or fix the underlying context gap first. See [Handle blocked or failed tasks](/guides/handle-blocked-or-failed-tasks/) for details.
 
-Before approving a requirement for enqueue, verify:
+## Keep your context current
 
-- [ ] The requirement table is specific enough to review a PR against.
-- [ ] Acceptance criteria are testable.
-- [ ] Scope fits a single PR.
-- [ ] Relevant context is referenced (file paths, docs, design links).
-- [ ] No implicit dependencies on unmerged work.
-
-## Feedback policy
-
-Batch your PR feedback to reduce iteration cycles. Each round-trip triggers a new agent cycle, so leave all comments in one review pass rather than one by one.
-
-Be specific and actionable — point to exact lines and describe expected behavior. Use file-level or line-level comments; general PR-level comments are not consumed by the agent.
-
-Separate discussion from action: prefix questions with `Question:` or `Let's discuss!` so the agent knows not to push code. Action-oriented comments (e.g. `drop the last commit`) trigger code changes.
-
-## Failure protocol
-
-When a task fails:
-
-1. Check logs first to identify the root cause. The agent posts a comment on the GitHub issue when a task fails.
-2. Decide whether to retry immediately or add context first. If the failure is transient, tell the agent in the issue to retry. If it points to a context gap, fix the context before retrying.
-3. After `maxFailedAttempts` (default: 3), the task moves to `failed` and stops retrying automatically. You can always reset it by telling the agent to retry in the issue.
-
-See [Handle blocked or failed tasks](/guides/handle-blocked-or-failed-tasks/) for detailed recovery steps.
-
-## Context maintenance
-
-Update `AGENTS.md` and context docs to prevent recurring mistakes:
-
-- **After recurring review feedback** — if you keep correcting the same pattern, add it to `AGENTS.md`.
-- **After merging significant features** — update context docs that reference changed architecture or APIs.
-- **After failed tasks** — if a failure traces back to missing or outdated context, fix the source rather than just retrying.
+The single biggest factor in output quality is the context kipp•punkt works with. When you notice recurring review feedback correcting the same pattern, add it to `AGENTS.md`. After merging features that change architecture or APIs, update the context docs that reference them. After failed tasks that trace back to missing context, fix the source rather than just retrying.
