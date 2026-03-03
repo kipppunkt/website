@@ -4,7 +4,9 @@ sidebar:
   order: 5
 ---
 
-Docker Desktop 4.58+ includes an experimental Sandboxes feature that runs agents inside lightweight microVMs with full filesystem and network isolation. Each sandbox gets a private Docker daemon — the agent cannot access host files outside the mounted workspace or the host Docker daemon.
+[Docker Desktop Sandboxes](https://docs.docker.com/ai/sandboxes/) (4.58+) run coding agents inside lightweight microVMs with full filesystem and network isolation. Each sandbox gets a private Docker daemon — the agent cannot access host files outside the mounted workspace or the host Docker daemon.
+
+In a kipppunkt setup, the **orchestrator runs on the host** and spawns agent processes. Docker Sandboxes isolate those agent processes so a compromised agent cannot access the host beyond its mounted workspace.
 
 **Supported platforms:** Windows and macOS. Linux support is experimental — see the [Linux sandbox page](/reference/sandbox-with-docker-linux/) for a container-based alternative.
 
@@ -12,78 +14,64 @@ Docker Desktop 4.58+ includes an experimental Sandboxes feature that runs agents
 
 - Docker Desktop **4.58 or later** with Sandboxes enabled
 - Windows or macOS
-- A working kipppunkt setup (orchestrator running on the host)
+- A working kipppunkt setup on the host
 
-## Launch a sandbox
+## How it fits together
 
-Docker Sandboxes natively support known agents (Claude Code, Codex, Copilot CLI). To run kipppunkt inside a sandbox, use Shell mode:
+The kipppunkt orchestrator runs on the host and uses `--command` to spawn agent processes. To sandbox those agents, wrap your harness command so it runs inside a Docker Sandbox. The orchestrator itself stays on the host.
+
+## Create a sandbox
+
+Docker Sandboxes [natively support known agents](https://docs.docker.com/ai/sandboxes/agents/) (Claude Code, Codex, Copilot CLI). To run kipppunkt's agent command inside a sandbox, use the [Shell template](https://docs.docker.com/ai/sandboxes/agents/shell/):
 
 ```bash
-docker sandbox run shell ~/my-project
+docker sandbox create shell ~/my-project --name kp-sandbox
 ```
-
-This opens an interactive shell inside the sandbox with `~/my-project` mounted at the same absolute path.
 
 ## Configure the network allowlist
 
 Sandboxes deny all outbound traffic by default. Allowlist the hosts your agent needs:
 
 ```bash
-# GitHub API access (required)
-docker sandbox network proxy my-sandbox \
+docker sandbox network proxy kp-sandbox \
   --policy deny \
   --allow-host "api.github.com" \
-  --allow-host "*.github.com"
-
-# LLM API access (example: Anthropic)
-docker sandbox network proxy my-sandbox \
-  --allow-host "api.anthropic.com"
-
-# Orchestrator on the host
-docker sandbox network proxy my-sandbox \
+  --allow-host "*.github.com" \
+  --allow-host "api.anthropic.com" \
   --allow-host "host.docker.internal:2309"
 ```
+
+The last entry allows the agent to reach the orchestrator on the host via `host.docker.internal`.
 
 Supported allowlist formats: exact host, `host:port`, `*.example.com` wildcards, and CIDR blocks.
 
 To audit outbound requests:
 
 ```bash
-docker sandbox network log my-sandbox
+docker sandbox network log kp-sandbox
 ```
 
 Network config persists per sandbox at `~/.docker/sandboxes/vm/<name>/proxy-config.json`. Defaults live at `~/.sandboxd/proxy-config.json`.
 
 ## Inject API keys
 
-The sandbox proxy can inject API keys at the network layer so they are never exposed inside the sandbox environment. This prevents exfiltration even if the agent is compromised.
+The sandbox proxy can [inject API keys at the network layer](https://docs.docker.com/ai/sandboxes/get-started/#inject-api-keys) so they are never exposed inside the sandbox environment. This prevents exfiltration even if the agent is compromised.
 
-For keys that cannot be injected via proxy, pass them as environment variables inside the sandbox shell:
-
-```bash
-export GH_TOKEN="ghp_..."
-export ANTHROPIC_API_KEY="sk-ant-..."
-export KIPPPUNKT_LICENSE="..."
-```
-
-## Reach the orchestrator
-
-The kipppunkt orchestrator runs on the host. Inside the sandbox, reach it via:
-
-```
-http://host.docker.internal:2309
-```
-
-Pass this as the `--orchestrator-url` flag or set it in your config file.
-
-## Start kipppunkt inside the sandbox
-
-Once inside the sandbox shell with network and env vars configured:
+For keys that cannot be injected via proxy, pass them as environment variables when running commands inside the sandbox:
 
 ```bash
-npx @kipppunkt/build start \
-  --command "claude -p {prompt} --dangerously-skip-permissions" \
-  --orchestrator-url http://host.docker.internal:2309
+docker sandbox exec kp-sandbox -- bash -c 'export GH_TOKEN="ghp_..." && export ANTHROPIC_API_KEY="sk-ant-..." && your-agent-command'
 ```
 
-Adjust the `--command` template to match your harness. See [CLI commands](/reference/cli-commands/) for all options.
+## Start kipppunkt
+
+Run the orchestrator on the host. Use `docker sandbox exec` in your `--command` template so agent processes run inside the sandbox:
+
+```bash
+kipppunkt-build start \
+  --command 'docker sandbox exec kp-sandbox -- claude -p {prompt} --dangerously-skip-permissions'
+```
+
+The orchestrator stays on the host and is reachable from inside the sandbox at `http://host.docker.internal:2309`.
+
+Adjust the agent command to match your harness. See [CLI commands](/reference/cli-commands/) for all options.
