@@ -1,77 +1,156 @@
 ---
-title: Using Docker Sandboxes
+title: Sandbox with Docker on Linux
 sidebar:
   order: 5
 ---
 
-[Docker Desktop Sandboxes](https://docs.docker.com/ai/sandboxes/) (4.58+) run coding agents inside lightweight microVMs with full filesystem and network isolation. Each sandbox gets a private Docker daemon — the agent cannot access host files outside the mounted workspace or the host Docker daemon.
+Rootless Docker lets you run kipppunkt inside a container with filesystem isolation — no root access required. This page covers setup for Linux.
 
-In a kipppunkt setup, the **orchestrator runs on the host** and spawns agent processes. Docker Sandboxes isolate those agent processes so a compromised agent cannot access the host beyond its mounted workspace.
-
-**Supported platforms:** Windows and macOS. Linux support is experimental — see the [Linux sandbox page](/reference/sandbox-with-docker-linux/) for a container-based alternative.
+:::caution[Network is not restricted]
+Rootless Docker provides filesystem isolation only. The container retains **full network access**. Any process inside the container can reach the internet and your local network. Do not rely on rootless Docker to prevent data exfiltration or outbound traffic.
+:::
 
 ## Prerequisites
 
-- Docker Desktop **4.58 or later** with Sandboxes enabled
-- Windows or macOS
-- A working kipppunkt setup on the host
+- A Linux system with systemd
+- Docker Engine (rootless setup — see below)
+- A [bot GitHub account](/get-started/prerequisites/) with `GH_TOKEN` ready
+- A kipppunkt license key (`KIPPPUNKT_LICENSE`) — optional, only needed for premium features
 
-## How it fits together
+## Set up rootless Docker
 
-The kipppunkt orchestrator runs on the host and uses `--command` to spawn agent processes. To sandbox those agents, wrap your harness command so it runs inside a Docker Sandbox. The orchestrator itself stays on the host.
-
-## Create a sandbox
-
-Docker Sandboxes [natively support known agents](https://docs.docker.com/ai/sandboxes/agents/) (Claude Code, Codex, Copilot CLI). To run kipppunkt's agent command inside a sandbox, use the [Shell template](https://docs.docker.com/ai/sandboxes/agents/shell/):
+### 1. Install dependencies
 
 ```bash
-docker sandbox create shell ~/my-project --name kp-sandbox
+sudo apt install uidmap dbus-user-session
 ```
 
-## Configure the network allowlist
-
-Sandboxes deny all outbound traffic by default. Allowlist the hosts your agent needs:
+### 2. Configure subordinate UIDs and GIDs
 
 ```bash
-docker sandbox network proxy kp-sandbox \
-  --policy deny \
-  --allow-host "api.github.com" \
-  --allow-host "*.github.com" \
-  --allow-host "api.anthropic.com" \
-  --allow-host "host.docker.internal:2309"
+sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
 ```
 
-The last entry allows the agent to reach the orchestrator on the host via `host.docker.internal`.
-
-Supported allowlist formats: exact host, `host:port`, `*.example.com` wildcards, and CIDR blocks.
-
-To audit outbound requests:
+### 3. Install the rootless daemon
 
 ```bash
-docker sandbox network log kp-sandbox
+dockerd-rootless-setuptool.sh install
 ```
 
-Network config persists per sandbox at `~/.docker/sandboxes/vm/<name>/proxy-config.json`. Defaults live at `~/.sandboxd/proxy-config.json`.
+If the setup tool is not on your PATH, see the [Docker rootless documentation](https://docs.docker.com/engine/security/rootless/).
 
-## Inject API keys
+### 4. Set the Docker socket
 
-The sandbox proxy can [inject API keys at the network layer](https://docs.docker.com/ai/sandboxes/get-started/#inject-api-keys) so they are never exposed inside the sandbox environment. This prevents exfiltration even if the agent is compromised.
-
-For keys that cannot be injected via proxy, pass them as environment variables when running commands inside the sandbox:
+Add this to your shell profile (e.g. `~/.bashrc`):
 
 ```bash
-docker sandbox exec kp-sandbox -- bash -c 'export GH_TOKEN="ghp_..." && export ANTHROPIC_API_KEY="sk-ant-..." && your-agent-command'
+export DOCKER_HOST=unix:///run/user/$(id -u)/docker.sock
 ```
 
-## Start kipppunkt
-
-Run the orchestrator on the host. Use `docker sandbox exec` in your `--command` template so agent processes run inside the sandbox:
+### 5. Enable persistence
 
 ```bash
-kipppunkt-build start \
-  --command 'docker sandbox exec kp-sandbox -- claude -p {prompt} --dangerously-skip-permissions'
+systemctl --user enable docker
+loginctl enable-linger $USER
 ```
 
-The orchestrator stays on the host and is reachable from inside the sandbox at `http://host.docker.internal:2309`.
+This keeps the rootless daemon running after you log out.
 
-Adjust the agent command to match your harness. See [CLI commands](/reference/cli-commands/) for all options.
+## Build the container image
+
+Create a `Dockerfile` in your project:
+
+```dockerfile
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates curl git gnupg nodejs npm ripgrep jq \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install GitHub CLI
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+    | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+    | tee /etc/apt/sources.list.d/github-cli-stable.list > /dev/null \
+    && apt-get update && apt-get install -y gh
+
+# Install kipppunkt and the AI harness (e.g. Claude Code)
+RUN npm install -g @kipppunkt/agent @anthropic-ai/claude-code
+
+WORKDIR /workspace
+```
+
+Build it:
+
+```bash
+docker build -t kipppunkt-sandbox:latest .
+```
+
+Adapt the harness install line if you use a different agent (e.g. Codex, OpenCode).
+
+## Log in to your AI harness
+
+Create a named container and log in interactively. This persists credentials inside the container so kipppunkt can use them on subsequent runs.
+
+```bash
+docker create --name kipppunkt \
+  --cap-drop ALL \
+  --security-opt no-new-privileges \
+  -v "$(pwd)":/workspace:rw \
+  -e GH_TOKEN="$GH_TOKEN" \
+  -e KIPPPUNKT_LICENSE="$KIPPPUNKT_LICENSE" \
+  kipppunkt-sandbox:latest \
+  kipppunkt-agent start --command "claude -p {prompt} --dangerously-skip-permissions"
+```
+
+Run this from your project directory. Then start the container in interactive mode and follow your harness's login flow:
+
+```bash
+docker start -ai kipppunkt
+```
+
+Once login succeeds, stop the container with `Ctrl+C`. The credentials are now stored inside the named container.
+
+## Launch kipppunkt
+
+Start the container:
+
+```bash
+docker start kipppunkt
+```
+
+To follow logs:
+
+```bash
+docker logs -f kipppunkt
+```
+
+Stop with:
+
+```bash
+docker stop kipppunkt
+```
+
+### What the flags do
+
+| Flag | Effect |
+|---|---|
+| `--cap-drop ALL` | Removes all Linux capabilities from the container. |
+| `--security-opt no-new-privileges` | Prevents any process inside the container from gaining additional privileges. |
+| `-v "$(pwd)":/workspace:rw` | Mounts your project directory as the only writable path. |
+
+### Environment variables
+
+| Variable | Purpose |
+|---|---|
+| `GH_TOKEN` | Authenticates the bot GitHub account for PR operations. |
+| `KIPPPUNKT_LICENSE` | Activates your kipppunkt license inside the container. Optional — only needed for premium features. |
+
+Both the orchestrator and the AI harness agent run inside the container. The host only provides the mounted project directory and forwarded environment variables.
+
+## References
+
+- [Docker rootless mode documentation](https://docs.docker.com/engine/security/rootless/)
+- [Sandbox your GitHub Copilot CLI on Linux](https://georg.dev/blog/07-sandbox-your-github-copilot-cli-on-linux/) — the article that inspired this approach
