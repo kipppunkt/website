@@ -1,70 +1,54 @@
 ---
 title: Shape ideas effectively
 sidebar:
-  order: 3
+  order: 2
 ---
 
-The quality of your GitHub issue directly affects how well kipp•punkt refines and implements your idea. Better input leads to fewer refinement rounds and higher-quality pull requests.
+The refinement stage is where a rough idea becomes an implementation-ready requirement. You collaborate with the refine agent in a GitHub issue thread until both sides agree on what should be built. This page explains how that collaboration works and how to get the best results from it.
 
-That said, the refine agent exists specifically to help you get there. Even a rough idea works — the agent asks clarifying questions and guides you toward a well-formulated requirement through conversation. The tips below help you get better results faster, not gatekeep what you can submit.
+## What the refine agent can do
 
-## Write declarative issues
+The refine agent picks up issues assigned to the bot user (mentions in the issue body or comments also work). From there, it:
 
-Describe **what** you want, not **how** to build it. Focus on the desired outcome, constraints, and acceptance criteria. Let the agent decide the implementation approach.
+- Drives the conversation from a vague idea toward a well-scoped requirement.
+- Asks clarifying questions when the intent is ambiguous.
+- Inspects codebase context to ground its suggestions in the current state of your project.
+- Proposes splitting large issues into smaller sub-issues when scope is too broad for a single implementation pass.
+- Produces a structured requirement table — the handoff contract that the build agent implements against.
 
-**Good:**
+The agent adapts to ambiguity. You don't need a perfectly written issue to start — a rough sketch is enough. The conversation fills in the gaps.
 
-> Add a search field to the users page. Typing filters the displayed list by username. The current user should never appear in results.
+## What the refine agent cannot do
 
-**Avoid:**
+- It does not enqueue a task without your explicit approval. You always decide when a requirement is ready for implementation.
+- It does not use emoji reactions as triggers. Only comments drive the conversation.
+- It does not react to edits on the issue title or body. If you update the issue description, mention the change in a comment so the agent picks it up.
 
-> Create a React component called UserSearch with a useState hook for the query, add a useEffect that calls the /api/users endpoint with a debounced input, then filter out the current user by comparing IDs.
+## What you are expected to do
 
-Declarative issues give the agent room to make implementation decisions based on your codebase — which often produces better results than prescribing steps.
+Your role during refinement is straightforward:
 
-## One feature per issue
+1. **Answer the agent's questions.** The agent asks because it needs clarity — your answers steer the requirement toward something implementable.
+2. **Review the structured requirement table.** Before approving, check that acceptance criteria match your intent. Correct anything that doesn't look right.
+3. **Add context where it helps.** File paths, links to related issues, design references, or notes about constraints all help the agent make better decisions. The more relevant context you provide, the fewer review cycles you'll need later.
 
-Keep each issue focused on a single feature or change. When an issue covers too much ground, refinement conversations become unfocused and implementation PRs become hard to review.
+:::tip
+You don't have to follow every suggestion the agent makes. It's there to help you think through the problem — not to prescribe the solution. If you disagree, say so in the thread and the agent adjusts.
+:::
 
-If your idea is large, the refine agent may propose splitting it into sub-issues. You can also split proactively before submitting.
+## Approval boundaries
 
-## Provide relevant context
+Two actions require your explicit approval in comments:
 
-Include anything that helps the agent understand the problem space:
+- **Enqueue for implementation.** The agent proposes requirements, but only you can approve them for the build queue.
+- **Sub-issue creation.** If the agent suggests splitting work, it waits for your confirmation before creating new issues.
 
-- **Constraints** — performance requirements, compatibility needs, security considerations.
-- **Related files or docs** — point to relevant code paths, design documents, or API specs.
-- **Links** — reference designs, related issues, or external resources.
-- **What not to do** — known approaches that won't work, or behavior to explicitly avoid.
+Nothing moves forward without your say-so.
 
-You don't need to be exhaustive. The refine agent can inspect your codebase and ask follow-up questions. But starting with good context reduces back-and-forth.
+## Why this matters
 
-## How issue quality affects the loop
+The structured requirement is the contract between you and the build agent. Acceptance criteria, scope, and context from this stage flow directly into implementation.
 
-The refine agent turns your issue into a structured requirement — the contract the build agent implements against. Every gap in the issue becomes either a refinement question (adding rounds) or an assumption (adding review churn).
+When refinement is thorough, the build agent produces closer-to-correct PRs on the first pass. When refinement is rushed, you pay for it in review churn — more back-and-forth, more iterations, more time spent on the PR instead of on the next idea.
 
-Issues that are clear and scoped well tend to:
-
-- Reach approval in fewer refinement rounds.
-- Produce PRs that need less revision.
-- Result in implementations that match your intent on the first pass.
-
-## Common pitfalls
-
-**Vague issues with no constraints.** "Make the app faster" gives the agent nothing concrete to refine against. Add specifics: which page, what metric, what's acceptable.
-
-**Implementation instructions instead of goals.** Step-by-step coding instructions bypass the agent's ability to reason about your codebase. Describe the outcome and let the agent find the path.
-
-**Multiple unrelated changes in one issue.** Bundling "add dark mode, fix the login bug, and update the footer" into a single issue produces unfocused requirements and messy PRs.
-
-**Missing context that only you know.** If there's a non-obvious constraint — a legacy API quirk, a design decision from a previous PR, a platform limitation — mention it. The agent can read your code but not your mind.
-
-## The refine agent has your back
-
-You don't need to write a perfect issue every time. The refine agent is designed to:
-
-- Ask clarifying questions when scope is unclear.
-- Surface edge cases you may not have considered.
-- Propose a structured requirement for your approval before anything gets built.
-
-Think of the issue as the start of a conversation, not a finished spec. The better your starting point, the faster you reach a good requirement — but the agent meets you where you are.
+Investing a few extra minutes in refinement is the highest-leverage thing you can do to speed up the overall loop.
