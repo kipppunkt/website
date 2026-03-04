@@ -16,4 +16,4 @@ If you do not have a license (free tier), this request is skipped entirely. kipp
 
 kipppunkt invokes your configured AI harness (Claude Code, Codex, OpenCode, etc.) as a subprocess. The harness itself may send data to its own cloud APIs according to its own privacy policy. That data handling is outside kipppunkt's scope and control.
 
-Consult your harness provider's documentation for details on what data it transmits and how it is stored.
+Since kipppunkt is AI provider agnostic, it natively supports self-hosted AIs.
