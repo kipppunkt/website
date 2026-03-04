@@ -42,7 +42,7 @@ The agent interacts with your repo through git and the GitHub API. It creates br
 All orchestrator state is persisted in a local directory (`.kipppunkt/` by default). This includes:
 
 - **Task state** — which tasks are queued, in progress, or completed.
-- **Workspace metadata** — which branches map to which tasks.
+- **GitHub issue state** — tracks potential agent failures for GitHub issue responses, in order to prevent endless loops.
 
 No state is stored on a remote server. If you delete the state directory, the orchestrator starts fresh.
 
@@ -59,11 +59,11 @@ The orchestrator is designed to resume cleanly:
 
 ## What runs where
 
-| Component | Runs on | Talks to |
-|---|---|---|
-| Orchestrator | Your machine / container | GitHub API, local filesystem |
-| Agent (harness) | Spawned by orchestrator | Git, GitHub API, your codebase |
-| GitHub | GitHub servers | You, orchestrator, agent |
-| You | Anywhere | GitHub (issues, PRs) |
+| Component | Talks to |
+|---|---|
+| Orchestrator | GitHub API, local filesystem |
+| Agent (harness) | Git, GitHub API, your codebase |
+| GitHub | You, orchestrator, agent |
+| You | GitHub (issues, PRs) |
 
 The orchestrator and agents run locally. GitHub is the shared surface where you and the system interact.
