@@ -14,6 +14,10 @@ Agents currently start each task from scratch. Short-term memory gives an agent 
 
 Learnings from one task should carry over to future tasks. Long-term memory captures patterns, preferences, and recurring feedback across the full history of a repository, so agents get better over time without you repeating yourself.
 
+## Multi-repo orchestration
+
+Running separate kipp•punkt instances per repository works but scales poorly against GitHub rate limits. A centralized orchestrator that manages multiple repositories from a single process will remove this bottleneck.
+
 ## Periodic refactoring agent
 
 After several features land, codebases accumulate drift. A refactoring agent that runs every *n* cycles reviews recent changes, identifies structural debt, and opens cleanup PRs automatically.
