@@ -6,24 +6,24 @@ sidebar:
 
 Before starting kipp•punkt, your repository needs minimal preparation. This page covers the initial state to start from, what kipp•punkt does once it's running, and the configuration fields that matter most for day-to-day operations.
 
-## Initial repo state
+## Start from a clean checkout
 
-Start from a clean checkout on the latest `main` (or whichever branch you've configured as `baseBranch` in your [configuration](/reference/configuration/)). There should be no uncommitted local changes — kipp•punkt creates workspaces from the base branch, and uncommitted work won't be included.
+Start from a clean checkout on the latest `main` (or whichever branch you've configured as `baseBranch` in your [configuration](/reference/configuration/)). There should be no uncommitted local changes. kipp•punkt creates workspaces from the base branch, and uncommitted work won't be included.
 
 ```bash
 git checkout main
 git pull
 ```
 
-That's it. No special directory structure or initialization command is needed.
+No special directory structure or initialization command is needed.
 
-## What happens after start
+## Keep working normally after start
 
 Once kipp•punkt is running, it manages its own branches and workspaces. You can keep using your repository normally — switch branches, edit files, commit, push. kipp•punkt operates in isolated workspaces and won't interfere with your local work.
 
 If you need to stop kipp•punkt, press `Ctrl+C`. State is persisted to disk and the orchestrator resumes where it left off on next start. See [CLI commands](/reference/cli-commands/) for details on the `start` command.
 
-## Context expectations
+## Add project context
 
 Nothing is strictly required, but an `AGENTS.md` file at the root of your repository is strongly recommended. This is the primary way you give the kipp•punkt agents project-specific instructions — coding conventions, architecture notes, technology choices, testing expectations.
 
@@ -33,7 +33,7 @@ The better your context, the better the output. If the agent keeps making the sa
 You don't need to write `AGENTS.md` from scratch. Start with a few bullet points about your stack and conventions, then expand it over time as you notice patterns in agent output. See the [daily workflow](/guides/daily-workflow/) guide for more on context maintenance.
 :::
 
-## Key config fields
+## Tune the key config fields
 
 The full field reference lives in the [configuration](/reference/configuration/) page. These are the fields that matter most for repository setup and operations:
 
@@ -56,9 +56,9 @@ A shell command that runs in the workspace directory immediately after creation 
 }
 ```
 
-Workspace creation copies your entire project folder — including dependency directories like `node_modules` or `venv`, and files like `.env` — into the workspace as-is. Use this hook to reinstall dependencies (fixing broken symlinks in sandboxed workspaces) or for any other workspace-specific bootstrap step.
+Workspace creation copies your entire project folder (including `node_modules`, `venv`, `.env`) into the workspace as-is. Use this hook to reinstall dependencies, fix broken symlinks, or run any other workspace-specific bootstrap step.
 
-## Start/stop operating model
+## Start, stop, and resume
 
 The intended operating model is simple: start kipp•punkt and leave it running. It polls for work, reacts to GitHub activity, and idles when there's nothing to do.
 
@@ -68,10 +68,14 @@ The intended operating model is simple: start kipp•punkt and leave it running.
 
 You don't need to worry about losing progress on stop. Task state, attempt counters, and queue position are all persisted to the [state directory](/reference/configuration/).
 
-## Security basics
+## Secure your setup
 
-Your `GH_TOKEN` contains repo-level permissions. Avoid leaving it in your shell history — consider [hiding exported variables from bash history](https://dev.to/epranka/hide-the-exported-env-variables-from-the-history-49ni) or using [direnv](https://direnv.net/) with a `.envrc` file in your project root for a persistent setup.
+:::tip[Keep your token out of shell history]
+Your `GH_TOKEN` has repo-level permissions. Avoid leaving it in your shell history by [hiding exported variables from bash history](https://dev.to/epranka/hide-the-exported-env-variables-from-the-history-49ni), or use [direnv](https://direnv.net/) with a `.envrc` file for a persistent setup.
+:::
 
-The kipp•punkt agent needs broad permissions in order to be effective. Running it in a container limits the blast radius if the agent messes up. See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker on Linux](/reference/sandbox-with-docker-linux/) for setup details.
+:::caution[Run in a sandbox]
+The kipp•punkt agent needs broad permissions to be effective. Running it directly on your host means it has access to your filesystem and network. Use a containerized environment to limit the blast radius. See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Safety for production use](/guides/safety-for-production-use/).
+:::
 
-For a full checklist, see [Safety for production use](/guides/safety-for-production-use/).
+For a full security checklist, see [Safety for production use](/guides/safety-for-production-use/).
