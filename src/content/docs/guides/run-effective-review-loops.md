@@ -4,55 +4,45 @@ sidebar:
   order: 3
 ---
 
-Review PRs from kipp•punkt the same way you'd review any other PR. The agent reacts to your feedback, pushes fixes, and explains its choices — but you decide when the code is ready to merge.
+Review PRs from kipp•punkt the same way you'd review any other PR. The agent reacts to your feedback, pushes fixes, and explains its choices. You decide when the code is ready to merge.
 
-## What the kipp•punkt agent does
+## Use file-level comments
 
-When a task reaches implementation, the agent opens a pull request. From there, it:
-
-- Monitors file-thread comments where it is not the last commenter.
-- Decides whether to reply with an explanation or push code changes in response.
-
-The agent does not act on general PR-level comments — only comments left on specific files or code lines.
-
-## How to provide feedback
-
-Leave comments on files or code lines in the PR. This is the only input the agent consumes. General PR comments (the top-level comment box) are ignored.
+The agent only consumes comments left on specific files or code lines. General PR-level comments (the top-level comment box) are ignored.
 
 If you want to address multiple concerns, leave them as separate file-thread comments rather than bundling everything into one message. This gives the agent a clearer signal for each issue.
 
-## How to steer agent behavior
+## Be direct about what you want
 
-The agent interprets your comment tone to decide what to do:
+The agent interprets your comment to decide whether to change code or just reply:
 
-- **Action-oriented comments** trigger code changes. Examples: `drop the last commit`, `rename this variable to userCount`, `extract this into a helper function`.
-- **Discussion-oriented comments** trigger replies without code changes. Examples: `Question: why did you choose this approach?`, `Let's discuss!`, `Can you explain this logic?`.
+- **Instructions** trigger code changes: *"Rename this to `userCount`"*, *"Extract this into a helper"*, *"Drop the last commit."*
+- **Questions** trigger explanations: *"Why this approach?"*, *"What happens if the input is empty?"*
 
-Be direct. The clearer your intent, the fewer round-trips you need.
+Vague comments like *"This doesn't look right"* force a guessing round-trip. Say what's wrong and what you want instead: *"This silently swallows errors. Propagate the exception to the caller."*
 
-## What influences quality
+## Batch your feedback
 
-Two factors drive iteration quality:
+Each review pass triggers a new agent cycle. If you leave three comments across three separate passes, you get three cycles, each one burning tokens and time.
 
-1. **Harness capability.** Different AI harnesses (Claude Code, Codex, etc.) vary in how well they handle nuanced feedback. Some push back on ambiguous instructions; others attempt best-effort fixes.
-2. **Your agent instructions.** The context in `AGENTS.md` and any `pretext` you configure shape how the agent interprets your codebase and feedback. Better instructions mean better first-pass results and fewer review cycles.
+Instead, review the full diff once, leave all your comments, and submit them together as a single GitHub review. The agent processes all threads in one pass and pushes a single set of fixes.
 
-## Merge-conflict behavior
+## Know when to push back vs. start over
 
-By default, the agent auto-resolves merge conflicts only when actionable comments exist on the PR (`mergeConflictResolution: "withThreads"`). You can change this behavior in your [config file](/reference/configuration/):
+If the implementation is close but has specific issues, review comments are the right tool. The agent iterates well on concrete, scoped feedback.
 
-- `"never"` — no automatic merge-conflict resolution.
-- `"withThreads"` — resolve conflicts only when actionable threads exist (default).
-- `"always"` — resolve conflicts even without pending threads.
+If the implementation fundamentally misses the intent (wrong approach, wrong scope, wrong trade-offs), review comments won't fix it. Go back to the GitHub issue, continue refinement with the agent there, and have it update the task. Then close the PR. kipp•punkt starts a fresh implementation from the revised requirement.
 
-## What you are expected to do
+## Merge conflicts
 
-1. **Review outcomes.** Read the diff, check that acceptance criteria are met, and verify the implementation matches your intent.
-2. **Decide when quality is acceptable.** You set the bar — the agent iterates until you're satisfied.
-3. **Merge yourself.** Squash and merge is recommended to keep your history clean.
+By default, the agent auto-resolves merge conflicts only when actionable comments exist on the PR (`mergeConflictResolution: "withThreads"`). You can change this in your [config](/reference/configuration/):
 
-The agent never merges on its own. You are always the final gate.
+- `"never"`: no automatic conflict resolution.
+- `"withThreads"`: resolve only when actionable threads exist (default).
+- `"always"`: resolve even without pending threads.
 
-## Merge boundary
+## Merge when satisfied
 
-PRs opened by the agent include `Closes: #<issue-id>` in the description. When you merge, the linked issue closes automatically. No extra cleanup needed.
+You are always the final gate. The agent never merges on its own.
+
+When you're satisfied, merge the PR. Squash and merge is recommended to keep history clean. Agent commits include `Closes: #<issue-id>`, so the linked issue closes automatically.
