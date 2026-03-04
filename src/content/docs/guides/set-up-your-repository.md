@@ -62,7 +62,7 @@ Workspace creation copies your entire project folder — including dependency di
 
 The intended operating model is simple: start kipp•punkt and leave it running. It polls for work, reacts to GitHub activity, and idles when there's nothing to do.
 
-- **Start**: `kipppunkt-build start --command "<template>"` — see [CLI commands](/reference/cli-commands/) for the full option set.
+- **Start**: `kipppunkt-agent start --command "<template>"` — see [CLI commands](/reference/cli-commands/) for the full option set.
 - **Stop**: `Ctrl+C` — the orchestrator shuts down gracefully and persists state.
 - **Resume**: Run the same start command again. The orchestrator picks up where it left off.
 

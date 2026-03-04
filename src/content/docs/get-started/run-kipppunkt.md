@@ -19,7 +19,7 @@ export GH_TOKEN=ghp_your_bot_token_here
 Run the orchestrator with [Codex](https://github.com/openai/codex) as the AI harness:
 
 ```bash
-npx @kipppunkt/build start \
+npx @kipppunkt/agent start \
   --command "codex exec {prompt} --dangerously-bypass-approvals-and-sandbox"
 ```
 

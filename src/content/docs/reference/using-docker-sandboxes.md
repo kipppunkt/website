@@ -68,7 +68,7 @@ docker sandbox exec kp-sandbox -- bash -c 'export GH_TOKEN="ghp_..." && export A
 Run the orchestrator on the host. Use `docker sandbox exec` in your `--command` template so agent processes run inside the sandbox:
 
 ```bash
-kipppunkt-build start \
+kipppunkt-agent start \
   --command 'docker sandbox exec kp-sandbox -- claude -p {prompt} --dangerously-skip-permissions'
 ```
 

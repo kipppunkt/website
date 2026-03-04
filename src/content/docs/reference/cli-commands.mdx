@@ -13,7 +13,7 @@ kipp•punkt provides two CLI commands: `start` to launch the orchestrator, and 
 Starts the main orchestrator. On launch, it begins polling for work and assigning tasks to agents.
 
 ```bash
-kipppunkt-build start --command "<template>" [options]
+kipppunkt-agent start --command "<template>" [options]
 ```
 
 Stop with <kbd>Ctrl+C</kbd>. The orchestrator persists state and resumes on next start.
@@ -48,7 +48,7 @@ The `--command` flag accepts a template string with a `{prompt}` placeholder tha
 When using Claude Code, you must additionally set the `IS_SANDBOX=1` environment variable for the process:
 
 ```bash
-IS_SANDBOX=1 kipppunkt-build start \
+IS_SANDBOX=1 kipppunkt-agent start \
   --command "claude -p {prompt} --dangerously-skip-permissions"
 ```
 :::
@@ -62,7 +62,7 @@ The commands in this section run the agent **unsandboxed**. For a more permanent
 Loads tasks into a running orchestrator from a requirements JSON file. The orchestrator must already be running.
 
 ```bash
-kipppunkt-build ingress --requirements <requirements.json> [options]
+kipppunkt-agent ingress --requirements <requirements.json> [options]
 ```
 
 ### Options

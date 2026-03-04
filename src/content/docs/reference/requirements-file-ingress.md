@@ -67,13 +67,13 @@ In a single-agent setup (`maxConcurrency: 1`), ordering requirements correctly i
 Use the [`ingress`](/reference/cli-commands/#ingress) command to load a requirements file into a running orchestrator:
 
 ```bash
-kipppunkt-build ingress --requirements requirements.json
+kipppunkt-agent ingress --requirements requirements.json
 ```
 
 If the orchestrator runs on a non-default URL, pass `--url`:
 
 ```bash
-kipppunkt-build ingress --requirements requirements.json --url http://localhost:3000
+kipppunkt-agent ingress --requirements requirements.json --url http://localhost:3000
 ```
 
 The orchestrator must already be running via [`start`](/reference/cli-commands/#start) before you run `ingress`.

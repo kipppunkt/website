@@ -1,14 +1,14 @@
-# @kipppunkt/build
+# @kipppunkt/agent
 
 Autonomous AI coding workflow with human-in-the-loop via GitHub PRs:
 
-`@kipppunkt/build` takes your features → implements → opens PRs → responds to reviews → repeats. 24/7.
+`@kipppunkt/agent` takes your features → implements → opens PRs → responds to reviews → repeats. 24/7.
 
 You review - from anywhere 🏝️
 
-> **Want to see `@kipppunkt/build` in action?** [Check out the pull requests](https://github.com/kipppunkt/build/pulls?q=is%3Apr+author%3Akipppunkt-agent) - kipp•punkt builds itself.
+> **Want to see `@kipppunkt/agent` in action?** [Check out the pull requests](https://github.com/kipppunkt/build/pulls?q=is%3Apr+author%3Akipppunkt-agent) - kipp•punkt builds itself.
 
-## Why `@kipppunkt/build`?
+## Why `@kipppunkt/agent`?
 
 > From **Kipppunkt** (German: *tipping point*).
 
@@ -16,7 +16,7 @@ AI coding agents are already moving software engineering out of the IDE. But sit
 
 The interface of the future is simpler: define what to build, review what was built.
 
-`@kipppunkt/build` is the first concrete building block of the [kipp•punkt vision](https://github.com/kipppunkt): an agent orchestrator that turns requirements into pull requests and reacts to your feedback. It works around the clock. You review from anywhere. Stay in the loop without staying at your desk.
+`@kipppunkt/agent` is the first concrete building block of the [kipp•punkt vision](https://github.com/kipppunkt): an agent orchestrator that turns requirements into pull requests and reacts to your feedback. It works around the clock. You review from anywhere. Stay in the loop without staying at your desk.
 
 ## Quick start
 
@@ -41,7 +41,7 @@ See [Requirements file format](#requirements-file-format) for more details.
 **4. Run it**
 
 ```bash
-npx @kipppunkt/build start \
+npx @kipppunkt/agent start \
   --requirements-path ./requirements.json \
   --command "codex exec {prompt} --dangerously-bypass-approvals-and-sandbox"
 ```
@@ -66,7 +66,7 @@ If you use a different harness than Codex, see [AI harness commands](#ai-harness
 For regular use, install globally so the binary persists:
 
 ```bash
-npm install -g @kipppunkt/build
+npm install -g @kipppunkt/agent
 ```
 
 #### Direct download
@@ -96,7 +96,7 @@ In the shell where you run kipppunkt, set the token:
 
 ```bash
 # Option A: inline (simplest, doesn't persist)
-GH_TOKEN=ghp_your_bot_token_here npx @kipppunkt/build ...
+GH_TOKEN=ghp_your_bot_token_here npx @kipppunkt/agent ...
 
 # Option B: export in the current shell
 export GH_TOKEN=ghp_your_bot_token_here
@@ -111,7 +111,7 @@ export GH_TOKEN=ghp_your_bot_token_here
 Starts the main orchestrator. 
 
 ```bash
-kipppunkt-build start --command "<template>" [options]
+kipppunkt-agent start --command "<template>" [options]
 ```
 
 On first launch, if `--requirements-path` is set, the orchestrator immediately starts assigning tasks to agents. Otherwise, it waits for tasks to be loaded into the system via the [`ingress`](#ingress) command.
@@ -137,14 +137,14 @@ Stop with Ctrl+C; the orchestrator persists state and resumes on next start.
 | OpenCode | `opencode run {prompt}` |
 | Copilot CLI | `copilot -p {prompt}` |
 
-[1] For Claude Code, you additionally need to pass the environment variable `IS_SANDBOX=1` to the process, e.g. `IS_SANDBOX=1 kipppunkt-build start --command "claude -p {prompt} --dangerously-skip-permissions"`
+[1] For Claude Code, you additionally need to pass the environment variable `IS_SANDBOX=1` to the process, e.g. `IS_SANDBOX=1 kipppunkt-agent start --command "claude -p {prompt} --dangerously-skip-permissions"`
 
 ### `ingress`
 
 Loads tasks into the orchestrator task store. Requires the orchestrator to be running.
 
 ```bash
-kipppunkt-build ingress --requirements <requirements.json> --url <orchestrator-url>
+kipppunkt-agent ingress --requirements <requirements.json> --url <orchestrator-url>
 ```
 
 | Option | Required | Default | Description |

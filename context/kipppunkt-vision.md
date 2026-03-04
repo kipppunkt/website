@@ -20,7 +20,7 @@ An AI-driven sparring partner for idea refinement. Tag it on a GitHub Issue and 
 
 Future: voice-based refinement sessions. Join a call on Teams, Zoom, or whatever you already use, and talk through your idea with the agent directly from a GitHub Issue. No new app — existing infrastructure, new capability.
 
-### kipppunkt/build
+### kipppunkt/agent
 
 **Core — autonomous implementation.**
 
