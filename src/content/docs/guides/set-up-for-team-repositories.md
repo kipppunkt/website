@@ -4,17 +4,15 @@ sidebar:
   order: 6
 ---
 
-kipp•punkt is not meant for big engineering org workflows. A single high-performing engineer with the right toolchain can ship what used to require a team. Small teams (2–5) are a natural extension, but the default unit is one person steering agents end-to-end.
+kipp•punkt is designed for a small number of high-performing people who cover the full value stream end-to-end. In team setups, optimize for clarity and control, not broad participation.
 
 ## Assume a small owner group
 
-The best setup is one or two core owners — someone who is product manager, architect, and engineer at once. Define clearly who refines issues, who approves enqueue, and who merges PRs. The human operates at the edges: shaping intent and approving results. Everything in between is automated.
-
-Collaborate when it makes sense — strategic discussions, discovery, a second opinion on a tricky PR. But the default mode is autonomous: you and the agent, from idea to shipped code.
+The best setup is one or just a few core owners who drive the full loop: refining issues, approving requirements, and merging PRs. Collaborate when it makes sense (strategic discussions, discovery, a second opinion on a tricky PR), but the default mode is autonomous: one person and the agent, from idea to shipped code.
 
 ## Control trigger permissions with `allowlist`
 
-By default, everyone with repo access can trigger agent actions. You can configure [`allowlist`](/reference/configuration/) to restrict this to specific users:
+By default, everyone with repo access can trigger agent actions. Configure [`allowlist`](/reference/configuration/) to restrict this to specific users:
 
 ```json
 {
@@ -38,9 +36,11 @@ This keeps normal human discussion clean and makes bot activation intentional. E
 
 ## One runtime per repo
 
-Do not run multiple kipp•punkt runtimes against the same repository. Multiple runtimes cause collisions, duplicate reactions, and inconsistent state. Treat this as a hard rule: one repo, one active kipp•punkt runtime.
+:::caution
+Do not run multiple kipp•punkt runtimes against the same repository.
+:::
 
-If you need the agent running on a shared server, coordinate who starts and stops it. There is no built-in locking — the discipline is organizational.
+Multiple runtimes cause collisions, duplicate reactions, and inconsistent state. If the agent needs to run on a shared server, coordinate who starts and stops it.
 
 ## Scale throughput by tuning one runtime
 
@@ -53,9 +53,4 @@ If you need more speed, scale the single runtime instead of adding more instance
 }
 ```
 
-This gives you more parallel work without coordination chaos. See [Set up your repository](/guides/set-up-your-repository/) for more on tuning these fields together.
-
-## The worst setup
-
-Broad trigger permissions plus multiple runtimes. That combination creates noisy loops, conflicting actions, and poor predictability. Lock down `allowlist`, run one runtime, and scale it.
-
+This gives you more parallel work without coordination chaos. See [Set up your repository](/guides/set-up-your-repository/#tune-the-key-config-fields) for more on tuning these fields together.
