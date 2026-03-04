@@ -4,13 +4,13 @@ sidebar:
   order: 6
 ---
 
-kipppunkt is not designed for large engineering org workflows. It is built for a small number of high-performing people who cover the full value stream end-to-end — from idea to shipped code. In team setups, optimize for clarity and control, not broad participation.
+kipppunkt is not designed for large engineering org workflows. It is built for a small number of high-performing engineers who each cover the full value stream end-to-end — from idea to shipped code.
 
-## Assume a small owner group
+## Each engineer drives their own value stream
 
-The best setup is either a single engineer or a few core owners. Define clearly who drives issue refinement, who gives approval for enqueue, and who merges PRs.
+In a kipppunkt team, each engineer works independently: refining their own issues, reviewing their own PRs, and merging their own work. There is no handoff between "the person who refines" and "the person who reviews." Each person drives their issues from start to finish, with the agent doing the implementation in between.
 
-Ambiguity here is the root cause of most team friction. If everyone can approve and merge, nobody owns quality. Pick your owners explicitly before starting kipppunkt.
+You still collaborate when it makes sense — strategic discussions, discovery sessions, or pulling in a teammate for a second opinion on a tricky PR. But the default mode is autonomous: you and the agent, end-to-end.
 
 ## Control trigger permissions with `allowlist`
 
