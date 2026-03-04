@@ -4,17 +4,17 @@ sidebar:
   order: 6
 ---
 
-kipppunkt is not designed for large engineering org workflows. The product vision is a small number of high-performing people who cover the full value stream end-to-end — from idea to shipped code. In team setups, optimize for clarity and control, not broad participation.
+kipppunkt is not designed for large engineering org workflows. It is built for a small number of high-performing people who cover the full value stream end-to-end — from idea to shipped code. In team setups, optimize for clarity and control, not broad participation.
 
 ## Assume a small owner group
 
-The best setup is a few core owners, or one engineer plus one stakeholder. Define clearly who drives issue refinement, who gives approval for enqueue, and who merges PRs.
+The best setup is either a single engineer or a few core owners. Define clearly who drives issue refinement, who gives approval for enqueue, and who merges PRs.
 
 Ambiguity here is the root cause of most team friction. If everyone can approve and merge, nobody owns quality. Pick your owners explicitly before starting kipppunkt.
 
 ## Control trigger permissions with `allowlist`
 
-In team repos, not everyone should be able to trigger agent actions. Configure [`allowlist`](/reference/configuration/) so only intended users can trigger refine actions and approvals:
+By default, everyone with repo access can trigger agent actions. You can configure [`allowlist`](/reference/configuration/) to restrict this to specific users:
 
 ```json
 {
@@ -22,7 +22,7 @@ In team repos, not everyone should be able to trigger agent actions. Configure [
 }
 ```
 
-This prevents drive-by comments from changing execution flow. Without an allowlist, any GitHub user with repo access can trigger the agent — fine for solo use, risky in a team.
+This prevents drive-by comments from changing execution flow.
 
 ## Use `requireMention` to separate discussion from action
 
@@ -55,11 +55,3 @@ If you need more speed, scale the single runtime instead of adding more instance
 
 This gives you more parallel work without coordination chaos. See [Set up your repository](/guides/set-up-your-repository/) for more on tuning these fields together.
 
-## Main failure mode to avoid
-
-The worst team setup is broad trigger permissions combined with multiple runtimes. That combination creates noisy loops, conflicting agent actions, and poor predictability. To stay safe:
-
-- Set `allowlist` to a small, explicit set of users.
-- Enable `requireMention` so the agent only acts when addressed.
-- Run exactly one kipppunkt runtime per repository.
-- Scale throughput by tuning concurrency, not by adding instances.
