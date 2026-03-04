@@ -4,13 +4,13 @@ sidebar:
   order: 6
 ---
 
-kipppunkt is not designed for large engineering org workflows. It is built for a small number of high-performing engineers who each cover the full value stream end-to-end — from idea to shipped code.
+kipppunkt is not meant for big engineering org workflows. A single high-performing engineer with the right toolchain can ship what used to require a team. Small teams (2–5) are a natural extension, but the default unit is one person steering agents end-to-end.
 
-## Each engineer drives their own value stream
+## Assume a small owner group
 
-In a kipppunkt team, each engineer works independently: refining their own issues, reviewing their own PRs, and merging their own work. There is no handoff between "the person who refines" and "the person who reviews." Each person drives their issues from start to finish, with the agent doing the implementation in between.
+The best setup is one or two core owners — someone who is product manager, architect, and engineer at once. Define clearly who refines issues, who approves enqueue, and who merges PRs. The human operates at the edges: shaping intent and approving results. Everything in between is automated.
 
-You still collaborate when it makes sense — strategic discussions, discovery sessions, or pulling in a teammate for a second opinion on a tricky PR. But the default mode is autonomous: you and the agent, end-to-end.
+Collaborate when it makes sense — strategic discussions, discovery, a second opinion on a tricky PR. But the default mode is autonomous: you and the agent, from idea to shipped code.
 
 ## Control trigger permissions with `allowlist`
 
@@ -54,4 +54,8 @@ If you need more speed, scale the single runtime instead of adding more instance
 ```
 
 This gives you more parallel work without coordination chaos. See [Set up your repository](/guides/set-up-your-repository/) for more on tuning these fields together.
+
+## The worst setup
+
+Broad trigger permissions plus multiple runtimes. That combination creates noisy loops, conflicting actions, and poor predictability. Lock down `allowlist`, run one runtime, and scale it.
 
