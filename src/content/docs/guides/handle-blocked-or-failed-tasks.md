@@ -10,9 +10,10 @@ Tasks can fail for many reasons — the agent exits with an error, PR creation b
 
 A failed attempt is any execution cycle that does not produce a merged result. Common causes:
 
-- The agent process exits with an error.
-- PR creation fails (e.g. due to Git or GitHub issues).
-- An opened PR is closed without being merged.
+- **Network issues** — transient connectivity problems between the agent, GitHub, or your AI provider.
+- **Incorrect agent setup** — the agent cannot reach GitHub due to sandbox restrictions, or the bot Git user has insufficient permissions on the repo.
+- **Hitting your agent usage quota** — the AI provider rejects requests because your plan limit is reached.
+- **PR closed by the user** — you (or a teammate) close the PR without merging.
 
 Each of these increments the task's failed-attempt counter.
 
@@ -34,12 +35,12 @@ curl "$ORCHESTRATOR_URL/tasks"
 
 ## First recovery action
 
-Check logs first. The orchestrator and agent logs typically contain the root cause — a missing dependency, a merge conflict the agent could not resolve, a harness timeout, or a context problem in your instructions.
+Check logs first. The orchestrator and agent logs typically contain the root cause — a network error, a permissions issue, a quota limit, or a harness timeout.
 
 Identify whether the failure is:
 
-- **Transient** (network blip, rate limit, flaky tool) — retry is likely enough.
-- **Structural** (bad instructions, missing context, unsupported task shape) — fix the underlying cause before retrying.
+- **Transient** (network blip, rate limit, temporary outage) — retry is likely enough.
+- **Structural** (wrong token permissions, sandbox misconfiguration, exhausted quota) — fix the underlying cause before retrying.
 
 ## Retry behavior
 
@@ -52,5 +53,5 @@ You do not need to restart the orchestrator. The retry happens within the runnin
 Retry is always available, but not always the right move. Use your judgment:
 
 - If the failure looks transient, retry immediately.
-- If the same failure repeats, investigate before retrying again. Check your `AGENTS.md`, the requirement description, and any linked context for gaps.
-- If the task consistently fails after multiple retries, the requirement may need reshaping — consider refining the scope or splitting it into smaller pieces.
+- If the same failure repeats, investigate before retrying again. Check your agent setup, token permissions, sandbox configuration, and quota status.
+- If the task consistently fails after multiple retries, the root cause is likely structural — fix permissions, configuration, or network access before trying again.
