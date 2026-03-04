@@ -68,4 +68,4 @@ The intended operating model is simple: start kipp•punkt and leave it running.
 
 You don't need to worry about losing progress on stop. Task state, attempt counters, and queue position are all persisted to the [state directory](/reference/configuration/).
 
-For production use, consider running kipp•punkt in a containerized environment. See [Sandbox with Docker](/reference/sandbox-with-docker/) for guidance on reducing host-level blast radius.
+For production use, consider running kipp•punkt in a containerized environment. See [Sandbox with Docker on Linux](/reference/sandbox-with-docker-linux/) for guidance on reducing host-level blast radius.

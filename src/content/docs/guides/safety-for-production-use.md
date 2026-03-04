@@ -12,7 +12,7 @@ The agent harness executes shell commands as part of implementation. In producti
 
 This reduces blast radius if the agent executes something unexpected. Even with a well-behaved harness, defense in depth applies: assume the agent will eventually run a command you didn't anticipate.
 
-See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker on Linux](/reference/sandbox-with-docker/) for setup details.
+See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker on Linux](/reference/sandbox-with-docker-linux/) for setup details.
 
 ## Restrict who can trigger actions
 

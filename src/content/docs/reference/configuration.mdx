@@ -30,7 +30,7 @@ If no config file is found, the orchestrator uses sensible defaults for all fiel
 | `stateDir` | `string` | `"./.kipppunkt"` | Directory where the orchestrator persists `build-state.json` and `refine-state.json`. |
 | `logLevel` | `"error"` \| `"warn"` \| `"info"` \| `"debug"` | `"info"` | Log verbosity. |
 | `pretext` | `string` | `""` | Project-wide instructions injected into every agent prompt. |
-| `postWorkspaceCreation` | `string` | `""` | Shell command run in the workspace directory immediately after workspace creation and before the kipp•punkt agent runs. |
+| `postWorkspaceCreation` | `string` | `""` | Shell command run in the workspace directory immediately after workspace creation and before the implementation agent runs. |
 | `allowlist` | `string[]` | `[]` | GitHub usernames allowed to trigger agent reactions via PR comments. An empty list permits any user. |
 | `requireMention` | `boolean` | `false` | When `true`, a thread is only actionable if the latest comment @mentions the bot. Useful to avoid reacting to every comment. |
 | `shutdownOnTaskFailed` | `boolean` | `false` | When `true`, gracefully shut down when a task enters `failed` state. |

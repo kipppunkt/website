@@ -28,7 +28,7 @@ Other harnesses work too — Claude Code, OpenCode, and Copilot CLI are all supp
 :::
 
 :::caution
-The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test run, but for any permanent setup you should run the agent in a sandbox. See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker](/reference/sandbox-with-docker/) for recommended configurations.
+The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test run, but for any permanent setup you should run the agent in a sandbox. See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker on Linux](/reference/sandbox-with-docker-linux/) for recommended configurations.
 :::
 
 ## Verify it's running
