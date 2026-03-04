@@ -8,7 +8,7 @@ With the kipp•punkt agent [up and running](/get-started/run-kipppunkt/), you'r
 
 ## 1. Create a GitHub issue
 
-Open an issue describing what you want to build. Write it like you'd explain the idea to a colleague — what it should do and any constraints worth mentioning.
+Open an issue describing what you want to build. Write it like you'd explain the idea to a colleague: what it should do and any constraints worth mentioning.
 
 Assign the issue to your bot GitHub account. This is what triggers kipp•punkt to pick it up.
 
@@ -16,7 +16,7 @@ Assign the issue to your bot GitHub account. This is what triggers kipp•punkt 
 
 ## 2. Refine the idea
 
-Once kipp•punkt picks up the issue on its next poll cycle, it starts a refinement conversation in the comments — clarifying questions, edge cases, and proposed requirements. This may take a few minutes depending on your `pollIntervalMinutes` setting.
+Once kipp•punkt picks up the issue on its next poll cycle, it starts a refinement conversation in the comments, clarifying questions, edge cases, and proposed requirements. This may take a few minutes depending on your `pollIntervalMinutes` setting.
 
 <!-- screenshot of refinement comments on the issue -->
 

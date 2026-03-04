@@ -19,7 +19,7 @@ The [GitHub CLI (`gh`)](https://cli.github.com/) is required for creating and ma
 Create a **separate GitHub account** for the agent. This keeps agent-authored PRs visually distinct from your own work.
 
 :::tip
-Most email providers let you reuse your existing address with a `+` suffix. For example, if your email is `alice@gmail.com`, you can sign up with `alice+bot@gmail.com` — no second inbox needed.
+Most email providers let you reuse your existing address with a `+` suffix. For example, if your email is `alice@gmail.com`, you can sign up with `alice+bot@gmail.com`, no second inbox needed.
 :::
 
 Once created, invite the bot account as a collaborator to your repository and generate a [personal access token](https://github.com/settings/tokens) with **repo** permissions.
