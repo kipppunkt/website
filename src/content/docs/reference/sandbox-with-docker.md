@@ -95,7 +95,7 @@ Adapt the harness install line if you use a different agent (e.g. Codex, OpenCod
 Create a named container and log in interactively. This persists credentials inside the container so kipp•punkt can use them on subsequent runs.
 
 ```bash
-docker create --name kipp•punkt \
+docker create --name kipppunkt \
   --cap-drop ALL \
   --security-opt no-new-privileges \
   -v "$(pwd)":/workspace:rw \
@@ -108,7 +108,7 @@ docker create --name kipp•punkt \
 Run this from your project directory. Then start the container in interactive mode and follow your harness's login flow:
 
 ```bash
-docker start -ai kipp•punkt
+docker start -ai kipppunkt
 ```
 
 Once login succeeds, stop the container with `Ctrl+C`. The credentials are now stored inside the named container.
@@ -118,19 +118,19 @@ Once login succeeds, stop the container with `Ctrl+C`. The credentials are now s
 Start the container:
 
 ```bash
-docker start kipp•punkt
+docker start kipppunkt
 ```
 
 To follow logs:
 
 ```bash
-docker logs -f kipp•punkt
+docker logs -f kipppunkt
 ```
 
 Stop with:
 
 ```bash
-docker stop kipp•punkt
+docker stop kipppunkt
 ```
 
 ### What the flags do
