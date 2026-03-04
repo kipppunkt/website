@@ -8,13 +8,13 @@ With the [prerequisites](/get-started/prerequisites/) in place, you're ready to 
 
 ## Set `GH_TOKEN`
 
-Export the bot account's personal access token in the shell where you'll run kipppunkt:
+Export the bot account's personal access token in the shell where you'll run kipp•punkt:
 
 ```bash
 export GH_TOKEN=ghp_your_bot_token_here
 ```
 
-## Start kipppunkt
+## Start kipp•punkt
 
 Run the orchestrator with [Codex](https://github.com/openai/codex) as the AI harness:
 
@@ -28,7 +28,7 @@ Other harnesses work too — Claude Code, OpenCode, and Copilot CLI are all supp
 :::
 
 :::caution
-The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test run, but for any permanent setup you should run the agent in a sandbox. See [Sandboxing by harness](/reference/sandboxing-by-harness/) for recommended configurations.
+The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test run, but for any permanent setup you should run the agent in a sandbox. See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) for recommended configurations.
 :::
 
 ## Verify it's running

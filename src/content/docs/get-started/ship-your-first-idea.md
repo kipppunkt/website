@@ -4,7 +4,7 @@ sidebar:
   order: 4
 ---
 
-With the kipp•punkt agent [up and running](/get-started/run-kipppunkt/), you're ready to ship your first idea.
+With the kipp•punkt agent [up and running](/get-started/run-kipp•punkt/), you're ready to ship your first idea.
 
 ## 1. Create a GitHub issue
 

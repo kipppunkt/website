@@ -12,7 +12,7 @@ The agent harness executes shell commands as part of implementation. In producti
 
 This reduces blast radius if the agent executes something unexpected. Even with a well-behaved harness, defense in depth applies: assume the agent will eventually run a command you didn't anticipate.
 
-See [Sandbox with Docker](/reference/sandbox-with-docker/) and [Sandboxing by harness](/reference/sandboxing-by-harness/) for setup details.
+See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker on Linux](/reference/sandbox-with-docker/) for setup details.
 
 ## Restrict who can trigger actions
 
@@ -42,4 +42,3 @@ The worst production setup combines broad trigger permissions, no containerizati
 
 Avoid this by applying all four measures above: container isolation, restricted triggers, minimal token scope, and bounded runtime. Each layer is simple on its own — the risk comes from skipping them in combination.
 
-See [Security and sandbox flags](/reference/security-and-sandbox-flags/) for a detailed matrix of recommended versus risky flag configurations.

@@ -1,5 +1,5 @@
 ---
-title: How kipppunkt works
+title: How kipp•punkt works
 sidebar:
   order: 1
 ---

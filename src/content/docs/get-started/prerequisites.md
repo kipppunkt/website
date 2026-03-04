@@ -4,11 +4,11 @@ sidebar:
   order: 2
 ---
 
-Before running kipppunkt for the first time, make sure you have the following in place.
+Before running kipp•punkt for the first time, make sure you have the following in place.
 
 ## AI coding agent
 
-kipppunkt works with any AI coding agent CLI, such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex](https://github.com/openai/codex), or [OpenCode](https://github.com/sst/opencode). Install whichever agent you prefer and make sure it is available on your `PATH`.
+kipp•punkt works with any AI coding agent CLI, such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Codex](https://github.com/openai/codex), or [OpenCode](https://github.com/sst/opencode). Install whichever agent you prefer and make sure it is available on your `PATH`.
 
 ## GitHub CLI
 

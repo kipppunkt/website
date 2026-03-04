@@ -4,21 +4,21 @@ sidebar:
   order: 2
 ---
 
-The refinement stage is where a rough idea becomes an implementation-ready requirement. You collaborate with the refine agent in a GitHub issue thread until both sides agree on what should be built. This page explains how that collaboration works and how to get the best results from it.
+The refinement stage is where a rough idea becomes an implementation-ready requirement. You collaborate with the kipp•punkt agent in a GitHub issue thread until both sides agree on what should be built. This page explains how that collaboration works and how to get the best results from it.
 
-## What the refine agent can do
+## What the kipp•punkt agent can do
 
-The refine agent picks up issues assigned to the bot user (mentions in the issue body or comments also work). From there, it:
+The kipp•punkt agent picks up issues assigned to the bot user (mentions in the issue body or comments also work). From there, it:
 
 - Drives the conversation from a vague idea toward a well-scoped requirement.
 - Asks clarifying questions when the intent is ambiguous.
 - Inspects codebase context to ground its suggestions in the current state of your project.
 - Proposes splitting large issues into smaller sub-issues when scope is too broad for a single implementation pass.
-- Produces a structured requirement table — the handoff contract that the build agent implements against.
+- Produces a structured requirement table — the handoff contract that the kipp•punkt agent implements against.
 
 The agent adapts to ambiguity. You don't need a perfectly written issue to start — a rough sketch is enough. The conversation fills in the gaps.
 
-## What the refine agent cannot do
+## What the kipp•punkt agent cannot do
 
 - It does not enqueue a task without your explicit approval. You always decide when a requirement is ready for implementation.
 - It does not use emoji reactions as triggers. Only comments drive the conversation.
@@ -47,8 +47,8 @@ Nothing moves forward without your say-so.
 
 ## Why this matters
 
-The structured requirement is the contract between you and the build agent. Acceptance criteria, scope, and context from this stage flow directly into implementation.
+The structured requirement is the contract between you and the kipp•punkt agent. Acceptance criteria, scope, and context from this stage flow directly into implementation.
 
-When refinement is thorough, the build agent produces closer-to-correct PRs on the first pass. When refinement is rushed, you pay for it in review churn — more back-and-forth, more iterations, more time spent on the PR instead of on the next idea.
+When refinement is thorough, the kipp•punkt agent produces closer-to-correct PRs on the first pass. When refinement is rushed, you pay for it in review churn — more back-and-forth, more iterations, more time spent on the PR instead of on the next idea.
 
 Investing a few extra minutes in refinement is the highest-leverage thing you can do to speed up the overall loop.

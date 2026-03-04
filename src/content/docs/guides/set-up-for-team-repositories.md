@@ -4,7 +4,7 @@ sidebar:
   order: 6
 ---
 
-kipppunkt is not meant for big engineering org workflows. A single high-performing engineer with the right toolchain can ship what used to require a team. Small teams (2–5) are a natural extension, but the default unit is one person steering agents end-to-end.
+kipp•punkt is not meant for big engineering org workflows. A single high-performing engineer with the right toolchain can ship what used to require a team. Small teams (2–5) are a natural extension, but the default unit is one person steering agents end-to-end.
 
 ## Assume a small owner group
 
@@ -38,7 +38,7 @@ This keeps normal human discussion clean and makes bot activation intentional. E
 
 ## One runtime per repo
 
-Do not run multiple kipppunkt runtimes against the same repository. Multiple runtimes cause collisions, duplicate reactions, and inconsistent state. Treat this as a hard rule: one repo, one active kipppunkt runtime.
+Do not run multiple kipp•punkt runtimes against the same repository. Multiple runtimes cause collisions, duplicate reactions, and inconsistent state. Treat this as a hard rule: one repo, one active kipp•punkt runtime.
 
 If you need the agent running on a shared server, coordinate who starts and stops it. There is no built-in locking — the discipline is organizational.
 

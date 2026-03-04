@@ -32,9 +32,7 @@ see @./guides.md
 - **CLI commands**: Complete command-level reference for operating kipppunkt from the terminal.
 - **Configuration**: Field-by-field reference for runtime behavior and orchestrator settings.
 - **Requirements file ingress (Ralph Wiggum loop)**: Documents the secondary/legacy file-based ingress path.
-- **Sandboxing by harness**: Provides harness-specific safe sandbox configuration guidance.
 - **Sandbox with Docker**: Provides container-based sandboxing for harnesses without native sandbox controls.
-- **Security and sandbox flags**: Central matrix of recommended vs risky flags and when they should be used.
 
 ## Concepts
 
