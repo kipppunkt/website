@@ -52,11 +52,11 @@ A shell command that runs in the workspace directory immediately after creation 
 
 ```json
 {
-  "postWorkspaceCreation": "npm install"
+  "postWorkspaceCreation": "rm -rf node_modules && pnpm install"
 }
 ```
 
-Common uses: installing dependencies, generating files, fixing symlinks. If your project requires any bootstrap step before an agent can work on it, this is where it goes.
+Workspace creation copies your entire project folder — including dependency directories like `node_modules` or `venv`, and files like `.env` — into the workspace as-is. Use this hook to reinstall dependencies (fixing broken symlinks in sandboxed workspaces) or for any other workspace-specific bootstrap step.
 
 ## Start/stop operating model
 
