@@ -8,7 +8,7 @@ kipp•punkt is under active development. This page lists known boundaries and r
 
 ## No native multi-repo support
 
-You can run kipp•punkt for multiple repositories on the same machine, but each instance polls GitHub independently. As you add repos, this becomes inefficient against GitHub's API rate limits. A centralized multi-repo mode is on the [roadmap](/concepts/roadmap).
+You can run kipp•punkt for multiple repositories on the same machine, but each instance polls GitHub independently. As you add repos, this becomes inefficient against GitHub's API rate limits and is a pain to set up in a more centralized environment. A centralized multi-repo mode is on the [roadmap](/concepts/roadmap).
 
 ## Limited observability
 
