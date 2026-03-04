@@ -36,8 +36,7 @@ The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test r
 Once started, the orchestrator logs its status to stdout. You should see output indicating it is polling for work:
 
 ```
-[info] Orchestrator listening on http://localhost:2309
-[info] Polling for tasks...
+[INFO] Orchestrator API: http://localhost:2309
 ```
 
 You can also query the orchestrator API to confirm it's up:

@@ -68,4 +68,10 @@ The intended operating model is simple: start kipp•punkt and leave it running.
 
 You don't need to worry about losing progress on stop. Task state, attempt counters, and queue position are all persisted to the [state directory](/reference/configuration/).
 
-For production use, consider running kipp•punkt in a containerized environment. See [Sandbox with Docker on Linux](/reference/sandbox-with-docker-linux/) for guidance on reducing host-level blast radius.
+## Security basics
+
+Your `GH_TOKEN` contains repo-level permissions. Avoid leaving it in your shell history — consider [hiding exported variables from bash history](https://dev.to/epranka/hide-the-exported-env-variables-from-the-history-49ni) or using [direnv](https://direnv.net/) with a `.envrc` file in your project root for a persistent setup.
+
+The kipp•punkt agent needs broad permissions in order to be effective. Running it in a container limits the blast radius if the agent messes up. See [Using Docker Sandboxes](/reference/using-docker-sandboxes/) and [Sandbox with Docker on Linux](/reference/sandbox-with-docker-linux/) for setup details.
+
+For a full checklist, see [Safety for production use](/guides/safety-for-production-use/).

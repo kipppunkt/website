@@ -4,7 +4,7 @@ sidebar:
   order: 2
 ---
 
-Before running kipp•punkt for the first time, make sure you have the following in place.
+kipp•punkt orchestrates AI agents that turn your ideas into pull requests. It runs locally on your machine and uses a bot GitHub account to open PRs and respond to reviews. Before running it for the first time, make sure you have the following in place.
 
 ## AI coding agent
 
@@ -12,11 +12,7 @@ kipp•punkt works with any AI coding agent CLI, such as [Claude Code](https://d
 
 ## GitHub CLI
 
-The [GitHub CLI (`gh`)](https://cli.github.com/) is required for creating and managing pull requests. Install it and authenticate:
-
-```bash
-gh auth login
-```
+The [GitHub CLI (`gh`)](https://cli.github.com/) is required for creating and managing pull requests. Install it and make sure it is available on your `PATH`.
 
 ## Bot GitHub account
 
