@@ -4,51 +4,53 @@ sidebar:
   order: 2
 ---
 
-The refinement stage is where a rough idea becomes an implementation-ready requirement. You collaborate with the kipp•punkt agent in a GitHub issue thread until both sides agree on what should be built. This page explains how that collaboration works and how to get the best results from it.
+You can open an issue with a rough idea or a concrete requirement. The agent adapts to both. This guide covers how to get the best results from refinement regardless of where you start.
 
-## What the kipp•punkt agent can do
+## Start with the problem, not the solution
 
-The kipp•punkt agent picks up issues assigned to the bot user (mentions in the issue body or comments also work). From there, it:
+Describe what's wrong or missing. Don't write implementation steps.
 
-- Drives the conversation from a vague idea toward a well-scoped requirement.
-- Asks clarifying questions when the intent is ambiguous.
-- Inspects codebase context to ground its suggestions in the current state of your project.
-- Proposes splitting large issues into smaller sub-issues when scope is too broad for a single implementation pass.
-- Produces a structured requirement table — the handoff contract that the kipp•punkt agent implements against.
+A good starting point: *"Users can't find other users on the platform. We need a way to search for them."* The agent figures out the how (input fields, suggestion lists, filtering logic) during refinement.
 
-The agent adapts to ambiguity. You don't need a perfectly written issue to start — a rough sketch is enough. The conversation fills in the gaps.
+A bad starting point: *"Add a text input that calls `/api/users?q=` on keypress and renders results in a dropdown."* Even though this will work as well, it skips refinement entirely. The agent has nothing to refine, so it implements exactly what you wrote and misses any edge cases that weren't discussed.
 
-## What the kipp•punkt agent cannot do
+## Add context the agent can't infer
 
-- It does not enqueue a task without your explicit approval. You always decide when a requirement is ready for implementation.
-- It does not use emoji reactions as triggers. Only comments drive the conversation.
-- It does not react to edits on the issue title or body. If you update the issue description, mention the change in a comment so the agent picks it up.
+The agent can read your codebase, but it can't read your mind. Anything that isn't in the code (constraints, design intent, prior decisions) needs to come from you.
 
-## What you are expected to do
+Useful context:
+- File paths or modules the change should touch (or avoid).
+- Links to designs, mockups, or related issues.
+- Constraints: *"Must work without JavaScript"*, *"Don't add new dependencies."*
+- Prior context: *"We tried X before and reverted it because Y."*
 
-Your role during refinement is straightforward:
+Not useful: restating what's already in `AGENTS.md`, pasting entire files, or linking to generic documentation the agent can find on its own.
 
-1. **Answer the agent's questions.** The agent asks because it needs clarity — your answers steer the requirement toward something implementable.
-2. **Review the structured requirement table.** Before approving, check that acceptance criteria match your intent. Correct anything that doesn't look right.
-3. **Add context where it helps.** File paths, links to related issues, design references, or notes about constraints all help the agent make better decisions. The more relevant context you provide, the fewer review cycles you'll need later.
+## Keep scope small
 
-:::tip
-You don't have to follow every suggestion the agent makes. It's there to help you think through the problem — not to prescribe the solution. If you disagree, say so in the thread and the agent adjusts.
-:::
+A good issue fits in a single PR. If you find yourself listing multiple independent outcomes, split before refinement. Don't wait for the agent to suggest it.
 
-## Approval boundaries
+Signs your issue is too broad:
+- It has "and" in the title connecting unrelated things.
+- Acceptance criteria span different areas of the codebase with no shared context.
+- You can't imagine reviewing the resulting PR in one sitting.
 
-Two actions require your explicit approval in comments:
+When in doubt, go smaller. Two focused issues always produce better results than one sprawling one.
 
-- **Enqueue for implementation.** The agent proposes requirements, but only you can approve them for the build queue.
-- **Sub-issue creation.** If the agent suggests splitting work, it waits for your confirmation before creating new issues.
+## Steer refinement, don't just answer
 
-Nothing moves forward without your say-so.
+Refinement is a conversation, not a questionnaire. The agent proposes; you can redirect, disagree, add constraints, or change direction mid-thread.
 
-## Why this matters
+If the agent suggests an approach you don't like, say so. If it's asking questions that miss the point, reframe the problem. If it scopes too broadly, tell it what to cut. The agent adjusts.
 
-The structured requirement is the contract between you and the kipp•punkt agent. Acceptance criteria, scope, and context from this stage flow directly into implementation.
+If you update the issue description after refinement has started, mention the change in a comment. The agent doesn't react to title or body edits on their own.
 
-When refinement is thorough, the kipp•punkt agent produces closer-to-correct PRs on the first pass. When refinement is rushed, you pay for it in review churn — more back-and-forth, more iterations, more time spent on the PR instead of on the next idea.
+## Know when to approve
 
-Investing a few extra minutes in refinement is the highest-leverage thing you can do to speed up the overall loop.
+When the agent proposes a requirement table, check three things before approving:
+
+1. **Scope fits one PR.** If it doesn't, ask the agent to split.
+2. **Acceptance criteria are specific enough to review against.** Vague criteria like "works correctly" will produce vague implementations.
+3. **Relevant context is referenced.** File paths, constraints, and design links should be in the requirement, not just in your head.
+
+If anything looks off, say so in the thread. One more round of refinement is cheaper than one more round of review.
