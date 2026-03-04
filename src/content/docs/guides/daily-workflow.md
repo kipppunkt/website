@@ -26,7 +26,7 @@ Before approving for enqueue, verify the requirement table is specific enough to
 
 The agent opens a PR. Review it like any other PR — leave comments on files or code lines (general PR-level comments are not consumed by the agent).
 
-Batch your feedback into one review pass rather than leaving comments one by one. Each round-trip triggers a new agent cycle, so fewer passes means faster convergence. Use action-oriented comments for code changes (`drop the last commit`) and prefix discussion with `Question:` or `Let's discuss!` so the agent knows not to push code.
+Batch your feedback into one review pass rather than leaving comments one by one. Each round-trip triggers a new agent cycle, so fewer passes means faster convergence. The agent interprets your tone: if your comment reads like an instruction, it will try to push a code change; if it reads like a question or discussion point, it will reply without changing code. You can nudge it in either direction by how you phrase your comment.
 
 Merge when satisfied. The issue closes automatically.
 
