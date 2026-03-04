@@ -4,11 +4,11 @@ sidebar:
   order: 5
 ---
 
-Before starting kipppunkt, your repository needs minimal preparation. This page covers the initial state to start from, what kipppunkt does once it's running, and the configuration fields that matter most for day-to-day operations.
+Before starting kipp•punkt, your repository needs minimal preparation. This page covers the initial state to start from, what kipp•punkt does once it's running, and the configuration fields that matter most for day-to-day operations.
 
 ## Initial repo state
 
-Start from a clean checkout on the latest `main` (or whichever branch you've configured as `baseBranch` in your [configuration](/reference/configuration/)). There should be no uncommitted local changes — kipppunkt creates workspaces from the base branch, and uncommitted work won't be included.
+Start from a clean checkout on the latest `main` (or whichever branch you've configured as `baseBranch` in your [configuration](/reference/configuration/)). There should be no uncommitted local changes — kipp•punkt creates workspaces from the base branch, and uncommitted work won't be included.
 
 ```bash
 git checkout main
@@ -19,13 +19,13 @@ That's it. No special directory structure or initialization command is needed.
 
 ## What happens after start
 
-Once kipppunkt is running, it manages its own branches and workspaces. You can keep using your repository normally — switch branches, edit files, commit, push. kipppunkt operates in isolated workspaces and won't interfere with your local work.
+Once kipp•punkt is running, it manages its own branches and workspaces. You can keep using your repository normally — switch branches, edit files, commit, push. kipp•punkt operates in isolated workspaces and won't interfere with your local work.
 
-If you need to stop kipppunkt, press `Ctrl+C`. State is persisted to disk and the orchestrator resumes where it left off on next start. See [CLI commands](/reference/cli-commands/) for details on the `start` command.
+If you need to stop kipp•punkt, press `Ctrl+C`. State is persisted to disk and the orchestrator resumes where it left off on next start. See [CLI commands](/reference/cli-commands/) for details on the `start` command.
 
 ## Context expectations
 
-Nothing is strictly required, but an `AGENTS.md` file at the root of your repository is strongly recommended. This is the primary way you give the refine and build agents project-specific instructions — coding conventions, architecture notes, technology choices, testing expectations.
+Nothing is strictly required, but an `AGENTS.md` file at the root of your repository is strongly recommended. This is the primary way you give the kipp•punkt agents project-specific instructions — coding conventions, architecture notes, technology choices, testing expectations.
 
 The better your context, the better the output. If the agent keeps making the same mistake, the fix is almost always to update `AGENTS.md` or add a focused context document rather than to leave the same PR feedback again.
 
@@ -48,7 +48,7 @@ Tune both together. High concurrency with aggressive polling can run into GitHub
 
 ### `postWorkspaceCreation`
 
-A shell command that runs in the workspace directory immediately after creation and before the build agent starts. Use this for setup steps your project needs:
+A shell command that runs in the workspace directory immediately after creation and before the kipp•punkt agent starts. Use this for setup steps your project needs:
 
 ```json
 {
@@ -60,7 +60,7 @@ Workspace creation copies your entire project folder — including dependency di
 
 ## Start/stop operating model
 
-The intended operating model is simple: start kipppunkt and leave it running. It polls for work, reacts to GitHub activity, and idles when there's nothing to do.
+The intended operating model is simple: start kipp•punkt and leave it running. It polls for work, reacts to GitHub activity, and idles when there's nothing to do.
 
 - **Start**: `kipppunkt-build start --command "<template>"` — see [CLI commands](/reference/cli-commands/) for the full option set.
 - **Stop**: `Ctrl+C` — the orchestrator shuts down gracefully and persists state.
@@ -68,4 +68,4 @@ The intended operating model is simple: start kipppunkt and leave it running. It
 
 You don't need to worry about losing progress on stop. Task state, attempt counters, and queue position are all persisted to the [state directory](/reference/configuration/).
 
-For production use, consider running kipppunkt in a containerized environment. See [Sandbox with Docker](/reference/sandbox-with-docker/) for guidance on reducing host-level blast radius.
+For production use, consider running kipp•punkt in a containerized environment. See [Sandbox with Docker](/reference/sandbox-with-docker/) for guidance on reducing host-level blast radius.

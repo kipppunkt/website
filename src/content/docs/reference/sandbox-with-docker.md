@@ -4,7 +4,7 @@ sidebar:
   order: 5
 ---
 
-Rootless Docker lets you run kipppunkt inside a container with filesystem isolation — no root access required. This page covers setup for Linux.
+Rootless Docker lets you run kipp•punkt inside a container with filesystem isolation — no root access required. This page covers setup for Linux.
 
 :::caution[Network is not restricted]
 Rootless Docker provides filesystem isolation only. The container retains **full network access**. Any process inside the container can reach the internet and your local network. Do not rely on rootless Docker to prevent data exfiltration or outbound traffic.
@@ -15,7 +15,7 @@ Rootless Docker provides filesystem isolation only. The container retains **full
 - A Linux system with systemd
 - Docker Engine (rootless setup — see below)
 - A [bot GitHub account](/get-started/prerequisites/) with `GH_TOKEN` ready
-- A kipppunkt license key (`KIPPPUNKT_LICENSE`) — optional, only needed for premium features
+- A kipp•punkt license key (`KIPPPUNKT_LICENSE`) — optional, only needed for premium features
 
 ## Set up rootless Docker
 
@@ -76,7 +76,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
     | tee /etc/apt/sources.list.d/github-cli-stable.list > /dev/null \
     && apt-get update && apt-get install -y gh
 
-# Install kipppunkt and the AI harness (e.g. Claude Code)
+# Install kipp•punkt and the AI harness (e.g. Claude Code)
 RUN npm install -g @kipppunkt/agent @anthropic-ai/claude-code
 
 WORKDIR /workspace
@@ -92,7 +92,7 @@ Adapt the harness install line if you use a different agent (e.g. Codex, OpenCod
 
 ## Log in to your AI harness
 
-Create a named container and log in interactively. This persists credentials inside the container so kipppunkt can use them on subsequent runs.
+Create a named container and log in interactively. This persists credentials inside the container so kipp•punkt can use them on subsequent runs.
 
 ```bash
 docker create --name kipppunkt \
@@ -113,7 +113,7 @@ docker start -ai kipppunkt
 
 Once login succeeds, stop the container with `Ctrl+C`. The credentials are now stored inside the named container.
 
-## Launch kipppunkt
+## Launch kipp•punkt
 
 Start the container:
 
@@ -146,7 +146,7 @@ docker stop kipppunkt
 | Variable | Purpose |
 |---|---|
 | `GH_TOKEN` | Authenticates the bot GitHub account for PR operations. |
-| `KIPPPUNKT_LICENSE` | Activates your kipppunkt license inside the container. Optional — only needed for premium features. |
+| `KIPPPUNKT_LICENSE` | Activates your kipp•punkt license inside the container. Optional — only needed for premium features. |
 
 Both the orchestrator and the AI harness agent run inside the container. The host only provides the mounted project directory and forwarded environment variables.
 

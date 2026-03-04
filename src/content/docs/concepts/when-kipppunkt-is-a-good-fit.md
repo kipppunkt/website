@@ -1,5 +1,5 @@
 ---
-title: When kipppunkt is a good fit
+title: When kipp•punkt is a good fit
 sidebar:
   order: 3
 ---

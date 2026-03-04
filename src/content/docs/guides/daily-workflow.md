@@ -18,7 +18,7 @@ Keep your active pipeline narrow. One or two issues in refinement at a time is e
 
 ### Refine and approve
 
-The refine agent drives the issue toward a structured requirement table. Answer its questions, correct its proposals, and add context it can't infer on its own — file paths, design links, related issues.
+The kipp•punkt agent drives the issue toward a structured requirement table. Answer its questions, correct its proposals, and add context it can't infer on its own — file paths, design links, related issues.
 
 Before approving for enqueue, verify the requirement table is specific enough to review a PR against: testable acceptance criteria, scope that fits a single PR, relevant context referenced, and no implicit dependencies on unmerged work.
 

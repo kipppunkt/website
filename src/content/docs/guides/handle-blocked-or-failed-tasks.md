@@ -25,7 +25,7 @@ A failed task stays in that state until you explicitly intervene.
 
 ## How you detect it
 
-kipppunkt posts a comment on the related GitHub issue when a task moves to `failed`. If you configured `shutdownOnTaskFailed: true`, the orchestrator also shuts down gracefully — useful for CI-style setups where you want a hard stop on failure.
+kipp•punkt posts a comment on the related GitHub issue when a task moves to `failed`. If you configured `shutdownOnTaskFailed: true`, the orchestrator also shuts down gracefully — useful for CI-style setups where you want a hard stop on failure.
 
 Beyond that, you can check task state at any time via the orchestrator API:
 

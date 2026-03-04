@@ -4,9 +4,9 @@ sidebar:
   order: 3
 ---
 
-Review PRs from kipppunkt the same way you'd review any other PR. The agent reacts to your feedback, pushes fixes, and explains its choices — but you decide when the code is ready to merge.
+Review PRs from kipp•punkt the same way you'd review any other PR. The agent reacts to your feedback, pushes fixes, and explains its choices — but you decide when the code is ready to merge.
 
-## What the PR agent does
+## What the kipp•punkt agent does
 
 When a task reaches implementation, the agent opens a pull request. From there, it:
 

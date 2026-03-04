@@ -8,7 +8,7 @@ kipp•punkt automates implementation, but every decision that matters stays wit
 
 ## Approval boundary
 
-Nothing gets implemented until you say so. When you create an issue and the refine agent produces a structured requirement, that requirement sits idle until you explicitly approve it in a comment. The agent does not enqueue work on its own, does not interpret silence as approval, and does not start implementing based on partial input.
+Nothing gets implemented until you say so. When you create an issue and the kipp•punkt agent produces a structured requirement, that requirement sits idle until you explicitly approve it in a comment. The agent does not enqueue work on its own, does not interpret silence as approval, and does not start implementing based on partial input.
 
 This means you control what enters the pipeline. If a requirement isn't scoped well enough, you reject or revise it before any code is written.
 
