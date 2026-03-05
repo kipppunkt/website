@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-import TableSaw from '../../../components/TableSaw.astro';
-
 kipp•punkt provides two CLI commands: `start` to launch the orchestrator, and `ingress` to load tasks into a running orchestrator.
 
 ## `start`
@@ -20,29 +18,50 @@ Stop with <kbd>Ctrl+C</kbd>. The orchestrator persists state and resumes on next
 
 ### Options
 
-<TableSaw>
-| Option | Required | Default | Description |
-|---|---|---|---|
-| `--command` | Yes | - | Agent command template. See [AI harness commands](#ai-harness-commands). |
-| `--config-path` | No | `.kipppunkt/config.json` | Path to the [configuration](/reference/configuration/) file. |
-| `--log-level` | No | `info` | Log verbosity: `error`, `warn`, `info`, or `debug`. |
-| `--retry-failed` | No | `false` | Reset all failed tasks to idle on startup. |
-| `--orchestrator-url` | No | `http://localhost:2309` | URL of the orchestrator API endpoint. |
-| `--shutdown-on-task-failed` | No | `false` | Gracefully shut down when a task enters `failed` state. |
-</TableSaw>
+#### `--command` (required)
+
+Agent command template. See [AI harness commands](#ai-harness-commands).
+
+#### `--config-path`
+
+**Default:** `.kipppunkt/config.json`
+
+Path to the [configuration](/reference/configuration/) file.
+
+#### `--log-level`
+
+**Default:** `info`
+
+Log verbosity: `error`, `warn`, `info`, or `debug`.
+
+#### `--retry-failed`
+
+**Default:** `false`
+
+Reset all failed tasks to idle on startup.
+
+#### `--orchestrator-url`
+
+**Default:** `http://localhost:2309`
+
+URL of the orchestrator API endpoint.
+
+#### `--shutdown-on-task-failed`
+
+**Default:** `false`
+
+Gracefully shut down when a task enters `failed` state.
 
 ### AI harness commands
 
 The `--command` flag accepts a template string with a `{prompt}` placeholder that the orchestrator replaces at runtime.
 
-<TableSaw>
 | Harness | Command template |
 |---|---|
 | Codex | `codex exec {prompt} --dangerously-bypass-approvals-and-sandbox` |
 | Claude Code | `claude -p {prompt} --dangerously-skip-permissions` |
 | OpenCode | `opencode run {prompt}` |
 | Copilot CLI | `copilot -p {prompt}` |
-</TableSaw>
 
 :::note
 When using Claude Code, you must additionally set the `IS_SANDBOX=1` environment variable for the process:
@@ -67,11 +86,14 @@ kipppunkt-agent ingress --requirements <requirements.json> [options]
 
 ### Options
 
-<TableSaw>
-| Option | Required | Default | Description |
-|---|---|---|---|
-| `--requirements` | Yes | - | Path to the requirements JSON file. |
-| `--url` | No | `http://localhost:2309` | URL of the orchestrator API endpoint. |
-</TableSaw>
+#### `--requirements` (required)
+
+Path to the requirements JSON file.
+
+#### `--url`
+
+**Default:** `http://localhost:2309`
+
+URL of the orchestrator API endpoint.
 
 See [Requirements file ingress](/reference/requirements-file-ingress/) for details on the file format.
