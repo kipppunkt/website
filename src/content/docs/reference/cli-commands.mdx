@@ -23,7 +23,7 @@ Stop with <kbd>Ctrl+C</kbd>. The orchestrator persists state and resumes on next
 <TableSaw>
 | Option | Required | Default | Description |
 |---|---|---|---|
-| `--command` | Yes | — | Agent command template. See [AI harness commands](#ai-harness-commands). |
+| `--command` | Yes | - | Agent command template. See [AI harness commands](#ai-harness-commands). |
 | `--config-path` | No | `.kipppunkt/config.json` | Path to the [configuration](/reference/configuration/) file. |
 | `--log-level` | No | `info` | Log verbosity: `error`, `warn`, `info`, or `debug`. |
 | `--retry-failed` | No | `false` | Reset all failed tasks to idle on startup. |
@@ -70,7 +70,7 @@ kipppunkt-agent ingress --requirements <requirements.json> [options]
 <TableSaw>
 | Option | Required | Default | Description |
 |---|---|---|---|
-| `--requirements` | Yes | — | Path to the requirements JSON file. |
+| `--requirements` | Yes | - | Path to the requirements JSON file. |
 | `--url` | No | `http://localhost:2309` | URL of the orchestrator API endpoint. |
 </TableSaw>
 

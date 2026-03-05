@@ -6,15 +6,13 @@ sidebar:
 
 File-based ingress is the [Ralph Wiggum loop](https://georg.dev/blog/06-the-ralph-wiggum-loop/) of kipp•punkt: define requirements in a JSON file, feed them into the orchestrator, and let the agent work through them.
 
-This is a **secondary workflow**. For most projects, [creating GitHub Issues and letting the kipp•punkt agent pick them up](/get-started/ship-your-first-idea/) is the recommended path — it gives you a better refinement loop, full traceability, and easier collaboration. File ingress is useful when you already have a batch of well-defined requirements or prefer to manage specs outside of GitHub Issues.
-
-Requirements can also be phrased as PRD items if that fits your planning process.
+This is a **secondary workflow**. For most projects, [creating GitHub Issues and letting the kipp•punkt agent pick them up](/get-started/ship-your-first-idea/) is the recommended path. It gives you a better refinement loop, full traceability, and easier collaboration. File ingress is useful when you already have a batch of well-defined requirements or prefer to manage specs outside of GitHub Issues.
 
 ## Requirements file format
 
-The requirements file is a JSON array of requirement objects. The only required field is `id` (a string). Everything else is up to you — add whatever context helps the agent produce better results.
+The requirements file is a JSON array of requirement objects. The only required field is `id` (a string). Everything else is up to you: add whatever context helps the agent produce better results.
 
-Common fields include `title`, `description`, `acceptance_criteria`, and `additional_context`, but any structure works.
+Common fields include `title`, `description`, `acceptance_criteria`, and `additional_context`. Any structure works.
 
 ### Example
 

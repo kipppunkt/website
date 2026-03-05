@@ -4,7 +4,7 @@ sidebar:
   order: 5
 ---
 
-Rootless Docker lets you run kipp•punkt inside a container with filesystem isolation — no root access required. This page covers setup for Linux.
+Rootless Docker lets you run kipp•punkt inside a container with filesystem isolation, no root access required. This page covers setup for Linux.
 
 :::caution[Network is not restricted]
 Rootless Docker provides filesystem isolation only. The container retains **full network access**. Any process inside the container can reach the internet and your local network. Do not rely on rootless Docker to prevent data exfiltration or outbound traffic.
@@ -13,9 +13,9 @@ Rootless Docker provides filesystem isolation only. The container retains **full
 ## Prerequisites
 
 - A Linux system with systemd
-- Docker Engine (rootless setup — see below)
+- Docker Engine (rootless setup, see below)
 - A [bot GitHub account](/get-started/prerequisites/) with `GH_TOKEN` ready
-- A kipp•punkt license key (`KIPPPUNKT_LICENSE`) — optional, only needed for premium features
+- A kipp•punkt license key (`KIPPPUNKT_LICENSE`). Optional, only needed for premium features
 
 ## Set up rootless Docker
 
@@ -105,7 +105,7 @@ docker create --name kipppunkt \
   kipppunkt-agent start --command "claude -p {prompt} --dangerously-skip-permissions"
 ```
 
-Run this from your project directory. Then start the container in interactive mode and follow your harness's login flow:
+Run the `docker create` command from your project directory. Then start the container in interactive mode and follow your harness's login flow:
 
 ```bash
 docker start -ai kipppunkt
@@ -146,11 +146,11 @@ docker stop kipppunkt
 | Variable | Purpose |
 |---|---|
 | `GH_TOKEN` | Authenticates the bot GitHub account for PR operations. |
-| `KIPPPUNKT_LICENSE` | Activates your kipp•punkt license inside the container. Optional — only needed for premium features. |
+| `KIPPPUNKT_LICENSE` | Activates your kipp•punkt license inside the container. Optional, only needed for premium features. |
 
 Both the orchestrator and the AI harness agent run inside the container. The host only provides the mounted project directory and forwarded environment variables.
 
 ## References
 
 - [Docker rootless mode documentation](https://docs.docker.com/engine/security/rootless/)
-- [Sandbox your GitHub Copilot CLI on Linux](https://georg.dev/blog/07-sandbox-your-github-copilot-cli-on-linux/) — the article that inspired this approach
+- [Sandbox your GitHub Copilot CLI on Linux](https://georg.dev/blog/07-sandbox-your-github-copilot-cli-on-linux/) (the article that inspired this approach)
