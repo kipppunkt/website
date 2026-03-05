@@ -16,7 +16,7 @@ export GH_TOKEN=ghp_your_bot_token_here
 
 ## 2. Start kipp•punkt
 
-Run the orchestrator with [Codex](https://github.com/openai/codex) as the AI harness:
+From the root of your cloned repository, run the orchestrator with [Codex](https://github.com/openai/codex) as the AI harness:
 
 ```bash
 npx @kipppunkt/agent start \
@@ -33,7 +33,7 @@ The `--dangerously-bypass-approvals-and-sandbox` flag is fine for a quick test r
 
 ## 3. Verify it's running
 
-Once started, the orchestrator logs its status to stdout. You should see output indicating it is polling for work:
+Once started, the orchestrator logs its API endpoint to stdout:
 
 ```
 [INFO] Orchestrator API: http://localhost:2309

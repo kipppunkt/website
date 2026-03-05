@@ -8,7 +8,7 @@ This guide covers the repeatable loop for day-to-day work with kipp•punkt. It 
 
 ## Create issues freely
 
-Open GitHub issues whenever ideas come up. Assign them to the bot account, or @mention the bot in the issue body or a comment. Either triggers kipp•punkt to pick it up. The agent drives the refinement queue, so just keep feeding it.
+Open GitHub issues whenever ideas come up, from your desk or from your phone on the go. Assign them to the bot account, or @mention the bot in the issue body or a comment. Either triggers kipp•punkt to pick it up. The agent drives the refinement queue, so just keep feeding it.
 
 ## Approve carefully
 

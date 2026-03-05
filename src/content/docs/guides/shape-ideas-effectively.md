@@ -43,6 +43,8 @@ Refinement is a conversation, not a questionnaire. The agent proposes; you can r
 
 If the agent suggests an approach you don't like, say so. If it's asking questions that miss the point, reframe the problem. If it scopes too broadly, tell it what to cut. The agent adjusts.
 
+The agent always replies when your comment is the latest in the thread. If you want to pause or end the conversation, just stop replying.
+
 If you update the issue description after refinement has started, mention the change in a comment. The agent doesn't react to title or body edits on their own.
 
 ## Know when to approve

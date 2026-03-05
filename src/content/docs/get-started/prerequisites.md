@@ -26,7 +26,7 @@ Once created, invite the bot account as a collaborator to your repository and ge
 
 ## Use Git with HTTPS
 
-Git must be configured to authenticate over HTTPS. The bot's `GH_TOKEN` is used for both `gh` CLI auth and git credential auth, so HTTPS is the simplest setup.
+Clone the repository you want kipp•punkt to work on. Git must be configured to authenticate over HTTPS. The bot's `GH_TOKEN` is used for both `gh` CLI auth and git credential auth, so HTTPS is the simplest setup.
 
 Confirm your remote uses HTTPS:
 

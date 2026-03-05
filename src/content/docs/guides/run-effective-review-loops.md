@@ -33,6 +33,14 @@ If the implementation is close but has specific issues, review comments are the 
 
 If the implementation fundamentally misses the intent (wrong approach, wrong scope, wrong trade-offs), review comments won't fix it. Go back to the GitHub issue, continue refinement with the agent there, and have it update the task. Then close the PR. kipp•punkt starts a fresh implementation from the revised requirement.
 
+## Let automated checks do the heavy lifting
+
+Tests, linting, and preview deployments catch problems before you even open the diff. E2E tests are especially valuable here: they give you the most confidence that the feature actually works as intended.
+
+Set up CI to run these checks on every PR. You can also instruct the agent (via `pretext` or `AGENTS.md`) to run all checks locally before committing, so broken code rarely makes it to the PR in the first place.
+
+If your setup supports deploy previews (e.g. Vercel, Netlify, Cloudflare Pages), use them. Clicking through the result is often faster and more reliable than reading the diff.
+
 ## Merge conflicts
 
 By default, the agent auto-resolves merge conflicts only when actionable comments exist on the PR (`mergeConflictResolution: "withThreads"`). You can change this in your [config](/reference/configuration/):
