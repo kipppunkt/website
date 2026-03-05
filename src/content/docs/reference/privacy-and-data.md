@@ -8,7 +8,7 @@ kipp•punkt runs entirely on your machine. It does not transfer, collect, or st
 
 ## License validation
 
-The only outbound network request kipp•punkt makes is a single license-validation call to the `validate/` endpoint at session start. This call checks whether your license key is valid and returns a pass/fail response — no project data is included in the request.
+The only outbound network request kipp•punkt makes is a single license-validation call to the `validate/` endpoint at session start. This call checks whether your license key is valid and returns a pass/fail response. No project data is included in the request.
 
 If you do not have a license (free tier), this request is skipped entirely. kipp•punkt makes zero outbound calls in that case.
 

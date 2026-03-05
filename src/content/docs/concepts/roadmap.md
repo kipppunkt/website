@@ -28,4 +28,4 @@ Today, task ordering is mostly manual. Better dependency scheduling will let the
 
 ## Voice calls on GitHub issues
 
-Complex ideas are easier to talk through than type out. The goal is to let you start a voice conversation with the kipp•punkt agent directly from a GitHub issue — using your existing call infrastructure — for faster refinement on topics where text is too slow.
+Complex ideas are easier to talk through than type out. The goal is to let you start a voice conversation with the kipp•punkt agent directly from a GitHub issue, using your existing call infrastructure, for faster refinement on topics where text is too slow.

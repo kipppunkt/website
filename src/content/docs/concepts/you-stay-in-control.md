@@ -8,19 +8,19 @@ kipp•punkt automates implementation, but every decision that matters stays wit
 
 ## Approval boundary
 
-Nothing gets implemented until you say so. When you create an issue and the kipp•punkt agent produces a structured requirement, that requirement sits idle until you explicitly approve it in a comment. The agent does not enqueue work on its own, does not interpret silence as approval, and does not start implementing based on partial input.
+Nothing gets implemented until you say so. When you create an issue and the kipp•punkt agent produces a structured requirement, that requirement sits idle until you explicitly approve it in a comment. The agent does not enqueue work on its own and does not interpret silence as approval.
 
 This means you control what enters the pipeline. If a requirement isn't scoped well enough, you reject or revise it before any code is written.
 
 ## Review boundary
 
-Every implementation produces a pull request. The agent opens it, you review it — the same way you'd review any human-written PR. You leave comments on files and code lines, and the agent responds: pushing fixes or replying with explanations depending on your feedback.
+Every implementation produces a pull request. The agent opens it, you review it, the same way you'd review any human-written PR. You leave comments on files and code lines, and the agent responds: pushing fixes or replying with explanations depending on your feedback.
 
 There is no auto-approval step. The agent does not mark its own work as ready. You decide when the output meets your standards.
 
 ## Merge boundary
 
-The agent never merges. It cannot close the loop on its own. You review the PR, and when you're satisfied, you merge it yourself. The linked issue closes automatically on merge — but that merge action is always yours.
+The agent never merges. It cannot close the loop on its own. You review the PR, and when you're satisfied, you merge it yourself. The linked issue closes automatically on merge, but that merge action is always yours.
 
 This is a hard boundary, not a default you can toggle off. kipp•punkt is designed so that shipping code always requires a human decision.
 
