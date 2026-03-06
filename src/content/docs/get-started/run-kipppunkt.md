@@ -6,13 +6,21 @@ sidebar:
 
 With the [prerequisites](/get-started/prerequisites/) in place, you're ready to start the agent.
 
-## 1. Set `GH_TOKEN`
+## 1. Set environment variables
 
 Export the bot account's personal access token in the shell where you'll run kipp•punkt:
 
 ```bash
 export GH_TOKEN=ghp_your_bot_token_here
 ```
+
+:::tip[Premium unlocked, limited time]
+kipp•punkt offers a free tier and a premium tier. For a limited time, you can unlock all premium features (parallel agents, faster response times) with the license code `EARLY-ADOPTER`. No account or credit card needed.
+
+```bash
+export KIPPPUNKT_LICENSE=EARLY-ADOPTER
+```
+:::
 
 ## 2. Start kipp•punkt
 
