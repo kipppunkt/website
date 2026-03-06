@@ -1,5 +1,6 @@
 /* Color palette matching starlight-theme-black (OKLCH values) */
 /* Applied manually without installing the theme package */
+/* See https://github.com/adrian-ub/starlight-theme-black */
 
 :root[data-theme='dark'] {
 	--background: oklch(0.145 0 0);
@@ -91,4 +92,55 @@
 	--sl-color-banner-bg: oklch(0.97 0.01 255);
 	--sl-color-banner-border: oklch(0.55 0.22 263);
 	--sl-color-banner-text: var(--foreground);
+}
+
+/* Light-mode fixes for dark UI surfaces (matching starlight-theme-black component behavior). */
+html[data-theme='light'] .sl-link-button.primary,
+html[data-theme='light'] .sl-link-button.primary:hover {
+	color: var(--primary-foreground);
+}
+
+@media (min-width: 50rem) {
+	html[data-theme='light'] button[data-open-modal] {
+		color: var(--sl-color-gray-6);
+	}
+}
+
+html[data-theme='light'] button[data-open-modal] > kbd,
+html[data-theme='light'] button[data-open-modal] > kbd kbd {
+	color: var(--sl-color-gray-1);
+}
+
+html[data-theme='light'] .sidebar-pane [aria-current='page'],
+html[data-theme='light'] .sidebar-pane [aria-current='page']:hover,
+html[data-theme='light'] .sidebar-pane [aria-current='page']:focus {
+	color: var(--background);
+}
+
+html[data-theme='light'] #starlight__search .pagefind-ui__result-link {
+	--pagefind-ui-text: var(--background);
+}
+
+html[data-theme='light'] #starlight__search .pagefind-ui__result-excerpt,
+html[data-theme='light'] #starlight__search mark {
+	color: var(--sl-color-gray-6);
+}
+
+html[data-theme='light'] .copy-md-btn {
+	color: var(--sl-color-gray-2);
+	border-color: var(--sl-color-gray-4);
+}
+
+html[data-theme='light'] .copy-md-btn:hover {
+	color: var(--sl-color-white);
+	border-color: var(--sl-color-gray-2);
+}
+
+.sl-markdown-content .sl-anchor-link {
+	color: var(--sl-color-gray-3);
+}
+
+.sl-markdown-content .sl-anchor-link:hover,
+.sl-markdown-content .sl-anchor-link:focus {
+	color: var(--sl-color-gray-2);
 }
