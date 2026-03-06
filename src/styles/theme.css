@@ -151,50 +151,70 @@ html[data-theme='light'] .copy-md-btn:hover {
 
 @media (max-width: 49.999rem) {
 	html[data-theme='light'] starlight-menu-button button {
-		color: var(--background);
+		background-color: var(--background);
+		color: var(--sl-color-gray-1);
+		border: 1px solid var(--sl-color-gray-5);
+		box-shadow: none;
+	}
+
+	html[data-theme='light'] starlight-menu-button[aria-expanded='true'] button {
+		background-color: var(--sl-color-gray-6);
 	}
 
 	html[data-theme='light'] mobile-starlight-toc .toggle,
 	html[data-theme='light'] mobile-starlight-toc details[open] .toggle,
 	html[data-theme='light'] mobile-starlight-toc details .toggle:hover {
-		color: var(--background);
+		background-color: var(--background);
+		border-color: var(--sl-color-gray-5);
+		color: var(--sl-color-gray-1);
 	}
 
 	html[data-theme='light'] mobile-starlight-toc .display-current {
 		color: var(--sl-color-gray-1);
 	}
 
+	html[data-theme='light'] mobile-starlight-toc .dropdown {
+		background-color: var(--background);
+		border-color: var(--sl-color-gray-6);
+		border-top-color: var(--sl-color-gray-6);
+	}
+
 	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a,
 	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true'],
 	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true']:hover,
 	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true']:focus {
-		color: var(--sl-color-gray-6);
+		color: var(--sl-color-gray-1);
 	}
 
 	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true']::after {
-		background-color: var(--sl-color-gray-6);
+		background-color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] .sidebar-pane {
+		background-color: var(--background);
+		border-top: 1px solid var(--sl-color-gray-6);
 	}
 
 	html[data-theme='light'] .sidebar-pane .large,
 	html[data-theme='light'] .sidebar-pane summary,
 	html[data-theme='light'] .sidebar-pane a {
-		color: var(--sl-color-gray-6);
+		color: var(--sl-color-gray-1);
 	}
 
 	html[data-theme='light'] .sidebar-pane a:hover,
 	html[data-theme='light'] .sidebar-pane a:focus {
-		color: var(--background);
+		color: var(--sl-color-gray-1);
 	}
 
 	html[data-theme='light'] .sidebar-pane .mobile-preferences label,
 	html[data-theme='light'] .sidebar-pane .mobile-preferences select,
 	html[data-theme='light'] .sidebar-pane .mobile-preferences .label-icon,
 	html[data-theme='light'] .sidebar-pane .mobile-preferences .caret {
-		color: var(--sl-color-gray-6);
+		color: var(--sl-color-gray-1);
 	}
 
 	html[data-theme='light'] .sidebar-pane .mobile-preferences label:hover {
-		color: var(--sl-color-gray-5);
+		color: var(--sl-color-gray-2);
 	}
 }
 
