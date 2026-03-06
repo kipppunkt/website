@@ -4,9 +4,15 @@ sidebar:
   order: 4
 ---
 
-import { Aside } from '@astrojs/starlight/components';
-
 With the kipp•punkt agent [up and running](/get-started/run-kipppunkt/), you're ready to ship your first idea.
+
+:::note[Real example]
+This walkthrough follows a real change in this docs repo:
+- [Issue #11: Add a "Copy to Markdown" button](https://github.com/kipppunkt/website/issues/11)
+- [PR #12: Add Copy to Markdown button](https://github.com/kipppunkt/website/pull/12)
+
+This is how the "Copy page" button on this page was shipped: during lunch, from a phone.
+:::
 
 ## 1. Create a GitHub issue
 
@@ -14,11 +20,15 @@ Open an issue describing what you want to build. Write it like you'd explain the
 
 Assign the issue to your bot GitHub account. This is what triggers kipp•punkt to pick it up.
 
+[![Issue created](./ship-your-first-idea/1-issue-created.webp)](/images/ship-your-first-idea/1-issue-created.webp)
+
 ## 2. Refine the idea
 
 Once kipp•punkt picks up the issue on its next poll cycle, it starts a refinement conversation in the comments, clarifying questions, edge cases, and proposed requirements. This may take a few minutes depending on your `pollIntervalMinutes` setting.
 
 Answer at your own pace. The agent waits for your input before moving on.
+
+[![Refinement conversation](./ship-your-first-idea/2-refinement.webp)](/images/ship-your-first-idea/2-refinement.webp)
 
 ## 3. Approve requirements
 
@@ -26,15 +36,21 @@ Once the agent has enough information, it presents final requirements for your a
 
 Read them carefully and make sure everything is according to your liking. Give the agent your approval via a comment if you're happy with the result.
 
+[![Requirements approved](./ship-your-first-idea/3-requirement-approved.webp)](/images/ship-your-first-idea/3-requirement-approved.webp)
+
 ## 4. Let it implement
 
 The kipp•punkt agent creates its own workspace, starts a new branch, implements the requirements, and opens a pull request. This runs autonomously in the background and can take some time.
+
+[![Pull request created](./ship-your-first-idea/4-pr-created.webp)](/images/ship-your-first-idea/4-pr-created.webp)
 
 ## 5. Review and iterate
 
 Once the agent opened the PR, review it as you would any other. Leave comments and request changes. The agent responds and pushes follow-up commits.
 
 Specific, actionable feedback leads to better iterations. Point to exact behavior and describe what you expect instead.
+
+[![Code review and agent reaction](./ship-your-first-idea/5-feedback-loop.webp)](/images/ship-your-first-idea/5-feedback-loop.webp)
 
 ## 6. Merge
 

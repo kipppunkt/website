@@ -144,3 +144,7 @@ html[data-theme='light'] .copy-md-btn:hover {
 .sl-markdown-content .sl-anchor-link:focus {
 	color: var(--sl-color-gray-2);
 }
+
+.sl-markdown-content img {
+	border-radius: 6px;
+}
