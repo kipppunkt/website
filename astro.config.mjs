@@ -5,6 +5,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://kipppunkt.com',
   integrations: [
       starlight({
           title: 'kipp•punkt',
@@ -44,5 +45,7 @@ export default defineConfig({
       }),
 	],
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
 });
