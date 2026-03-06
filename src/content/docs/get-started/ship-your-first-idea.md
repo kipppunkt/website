@@ -42,8 +42,8 @@ Once satisfied, merge the PR. The issue closes automatically.
 
 ## You're set
 
-<Aside type="tip" title="Congrats!">
+:::tip[Congrats!]
 You just went from idea to implemented feature without writing a single line of code, and you could have done all of this from your mobile. Now imagine running five of these at once, on different repositories, 24/7.
-</Aside>
+:::
 
 From here, explore the guides to get the most out of kipp•punkt, from [shaping ideas effectively](/guides/shape-ideas-effectively/) to [running productive review loops](/guides/run-effective-review-loops/).

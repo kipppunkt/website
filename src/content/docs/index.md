@@ -1,6 +1,6 @@
 ---
 title: kipp•punkt
-description: kipp•punkt turns your ideas into pull requests. Shape requirements and review outcomes — everything in between is automated.
+description: kipp•punkt helps you shape requirements, implements autonomously, and responds to GitHub pull request reviews. It is a self-hosted, model-agnostic AI coding agent orchestrator that lets you ship from anywhere.
 template: splash
 prev: false
 next: false
