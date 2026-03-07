@@ -1,0 +1,70 @@
+/* Mobile-only light-mode overrides. */
+
+@media (max-width: 49.999rem) {
+	html[data-theme='light'] starlight-menu-button button {
+		background-color: var(--sl-color-black);
+		color: var(--background);
+		border: 1px solid var(--sl-color-gray-5);
+		box-shadow: none;
+	}
+
+	html[data-theme='light'] starlight-menu-button[aria-expanded='true'] button {
+		background-color: var(--sl-color-black);
+	}
+
+	html[data-theme='light'] mobile-starlight-toc .toggle,
+	html[data-theme='light'] mobile-starlight-toc details[open] .toggle,
+	html[data-theme='light'] mobile-starlight-toc details .toggle:hover {
+		background-color: var(--background);
+		border-color: var(--sl-color-gray-5);
+		color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] mobile-starlight-toc .display-current {
+		color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] mobile-starlight-toc .dropdown {
+		background-color: var(--background);
+		border-color: var(--sl-color-gray-6);
+		border-top-color: var(--sl-color-gray-6);
+	}
+
+	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a,
+	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true'],
+	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true']:hover,
+	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true']:focus {
+		color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] mobile-starlight-toc .dropdown .isMobile a[aria-current='true']::after {
+		background-color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] .sidebar-pane {
+		background-color: var(--background);
+		border-top: 1px solid var(--sl-color-gray-6);
+	}
+
+	html[data-theme='light'] .sidebar-pane .large,
+	html[data-theme='light'] .sidebar-pane summary,
+	html[data-theme='light'] .sidebar-pane a {
+		color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] .sidebar-pane a:hover,
+	html[data-theme='light'] .sidebar-pane a:focus {
+		color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] .sidebar-pane .mobile-preferences label,
+	html[data-theme='light'] .sidebar-pane .mobile-preferences select,
+	html[data-theme='light'] .sidebar-pane .mobile-preferences .label-icon,
+	html[data-theme='light'] .sidebar-pane .mobile-preferences .caret {
+		color: var(--sl-color-gray-1);
+	}
+
+	html[data-theme='light'] .sidebar-pane .mobile-preferences label:hover {
+		color: var(--sl-color-gray-2);
+	}
+}
