@@ -4,7 +4,7 @@ sidebar:
   order: 3
 ---
 
-File-based ingress is the [Ralph Wiggum loop](https://georg.dev/blog/06-the-ralph-wiggum-loop/) of kipp•punkt: define requirements in a JSON file, feed them into the orchestrator, and let the agent work through them.
+File-based ingress is the [Ralph Wiggum loop](https://ghuntley.com/ralph/) of kipp•punkt: define requirements in a JSON file, feed them into the orchestrator, and let the agent work through them.
 
 This is a **secondary workflow**. For most projects, [creating GitHub Issues and letting the kipp•punkt agent pick them up](/get-started/ship-your-first-idea/) is the recommended path. It gives you a better refinement loop, full traceability, and easier collaboration. File ingress is useful when you already have a batch of well-defined requirements or prefer to manage specs outside of GitHub Issues.
 
