@@ -18,6 +18,16 @@ export default defineConfig({
               './src/styles/theme.css',
           ],
           social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/kipppunkt' }],
+          head: [
+              { tag: 'meta', attrs: { property: 'og:image', content: 'https://kipppunkt.com/social-card.png' } },
+              { tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' } },
+              { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+              { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+              { tag: 'meta', attrs: { property: 'og:image:alt', content: 'kipp•punkt - AI coding agent orchestration' } },
+              { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
+              { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://kipppunkt.com/social-card.png' } },
+              { tag: 'meta', attrs: { name: 'twitter:image:alt', content: 'kipp•punkt - AI coding agent orchestration' } },
+          ],
           sidebar: [
               {
                   label: 'Home',
