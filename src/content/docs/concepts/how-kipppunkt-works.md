@@ -6,6 +6,8 @@ sidebar:
 
 kipp•punkt turns GitHub issues into pull requests. It helps you shape your ideas, implements them, opens PRs, and responds to reviews. You approve requirements and merge results.
 
+[![kipp•punkt flow diagram](./how-kipppunkt-works/kipppunkt-flow-diagram.webp)](/images/how-kipppunkt-works/kipppunkt-flow-diagram.webp)
+
 ## The flow: issue to PR
 
 When you create a GitHub issue and assign it to the bot account, the system picks it up automatically.
