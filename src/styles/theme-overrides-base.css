@@ -73,6 +73,10 @@ html[data-theme='light'] body > a[href='#_top']:focus {
 	color: var(--background);
 }
 
+.pagination-links a {
+	box-shadow: none;
+}
+
 .sl-markdown-content .sl-anchor-link {
 	color: var(--sl-color-gray-3);
 }
