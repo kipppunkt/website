@@ -1,6 +1,6 @@
 ---
 title: kipp•punkt
-description: kipp•punkt helps you shape requirements, implements autonomously, and responds to GitHub pull request reviews. It is a self-hosted, model-agnostic AI coding agent orchestrator that lets you ship from anywhere.
+description: Ship from anywhere with AI agent orchestration.
 template: splash
 prev: false
 next: false

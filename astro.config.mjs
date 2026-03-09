@@ -5,7 +5,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://kipppunkt.com',
+  site: 'https://kipppunkt.dev',
   integrations: [
       starlight({
           title: 'kipp•punkt',
@@ -19,14 +19,14 @@ export default defineConfig({
           ],
           social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/kipppunkt' }],
           head: [
-              { tag: 'meta', attrs: { property: 'og:image', content: 'https://kipppunkt.com/social-card.png' } },
+              { tag: 'meta', attrs: { property: 'og:image', content: 'https://kipppunkt.dev/social-card.png' } },
               { tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' } },
               { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
               { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
-              { tag: 'meta', attrs: { property: 'og:image:alt', content: 'kipp•punkt - AI coding agent orchestration' } },
+              { tag: 'meta', attrs: { property: 'og:image:alt', content: 'kipp•punkt - AI coding agent orchestration. Ideas in. PRs out. Ship from anywhere.' } },
               { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
-              { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://kipppunkt.com/social-card.png' } },
-              { tag: 'meta', attrs: { name: 'twitter:image:alt', content: 'kipp•punkt - AI coding agent orchestration' } },
+              { tag: 'meta', attrs: { name: 'twitter:image', content: 'https://kipppunkt.dev/social-card.png' } },
+              { tag: 'meta', attrs: { name: 'twitter:image:alt', content: 'kipp•punkt - AI coding agent orchestration. Ideas in. PRs out. Ship from anywhere.' } },
           ],
           sidebar: [
               {
