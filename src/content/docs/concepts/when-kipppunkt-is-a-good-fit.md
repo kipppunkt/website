@@ -1,7 +1,7 @@
 ---
 title: When kipp•punkt is a good fit
 sidebar:
-  order: 3
+  order: 4
 ---
 
 kipp•punkt works best in specific contexts. Not every project, workflow, or person benefits equally. This page helps you decide whether it fits yours.

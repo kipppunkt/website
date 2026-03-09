@@ -1,7 +1,7 @@
 ---
 title: You stay in control
 sidebar:
-  order: 2
+  order: 3
 ---
 
 kipp•punkt automates implementation, but every decision that matters stays with you. Three explicit boundaries ensure the agent never acts beyond what you've approved.

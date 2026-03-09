@@ -1,7 +1,7 @@
 ---
 title: Current limitations
 sidebar:
-  order: 4
+  order: 5
 ---
 
 kipp•punkt is under active development. This page lists known boundaries and rough edges so you can plan around them.

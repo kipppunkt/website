@@ -1,7 +1,7 @@
 ---
 title: Vision
 sidebar:
-  order: 5
+  order: 2
 ---
 
 Software engineering is going through a paradigm shift. AI agents can already write code. But sitting in a terminal watching them type is just the next intermediary. The real revolution looks different.
