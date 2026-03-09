@@ -85,3 +85,21 @@ html[data-theme='light'] body > a[href='#_top']:focus {
 .sl-markdown-content img {
 	border-radius: 6px;
 }
+
+.imprint-corner {
+	position: fixed;
+	right: max(24px, env(safe-area-inset-right));
+	bottom: max(12px, env(safe-area-inset-bottom));
+	font-size: 0.68rem;
+	line-height: 1;
+	opacity: 0.45;
+	color: var(--sl-color-gray-3);
+	text-decoration: none;
+	z-index: 15;
+}
+
+.imprint-corner:hover,
+.imprint-corner:focus-visible {
+	opacity: 0.9;
+	text-decoration: underline;
+}

@@ -15,3 +15,5 @@ hero:
       icon: external
       variant: minimal
 ---
+
+<a class="imprint-corner" href="/imprint/">Imprint</a>
