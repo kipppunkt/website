@@ -1,5 +1,6 @@
 {
   "pollIntervalMinutes": 15,
   "postWorkspaceCreation": "rm -rf node_modules && pnpm install",
-  "maxConcurrency": 3
+  "maxConcurrency": 3,
+  "allowlist": ["georg-unterholzner"]
 }
