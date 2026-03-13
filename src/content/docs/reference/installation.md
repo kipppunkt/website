@@ -4,7 +4,7 @@ sidebar:
   order: 0
 ---
 
-The `npx` command used in [Start in 5 minutes](/get-started/run-kipppunkt/) requires no installation. For regular use, install kipp•punkt permanently.
+The `npx` command used in [Start in 5 minutes](/get-started/run-the-kipppunkt-agent/) requires no installation. For regular use, install kipp•punkt permanently.
 
 ## npm (recommended)
 

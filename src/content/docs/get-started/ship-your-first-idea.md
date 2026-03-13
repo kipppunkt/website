@@ -1,10 +1,10 @@
 ---
 title: Ship your first idea
 sidebar:
-  order: 4
+  order: 5
 ---
 
-With the kipp•punkt agent [up and running](/get-started/run-kipppunkt/), you're ready to ship your first idea.
+With the kipp•punkt agent [up and running](/get-started/run-the-kipppunkt-agent/), you're ready to ship your first idea.
 
 :::note[Real example]
 This walkthrough follows a real change in this docs repo:
@@ -47,8 +47,6 @@ The kipp•punkt agent creates its own workspace, starts a new branch, implement
 ## 5. Review and iterate
 
 Once the agent opened the PR, review it as you would any other. Leave comments and request changes. The agent responds and pushes follow-up commits.
-
-Specific, actionable feedback leads to better iterations. Point to exact behavior and describe what you expect instead.
 
 [![Code review and agent reaction](./ship-your-first-idea/5-feedback-loop.webp)](/images/ship-your-first-idea/5-feedback-loop.webp)
 

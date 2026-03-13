@@ -14,7 +14,7 @@ Rootless Docker provides filesystem isolation only. The container retains **full
 
 - A Linux system with systemd
 - Docker Engine (rootless setup, see below)
-- A [bot GitHub account](/get-started/prerequisites/) with `GH_TOKEN` ready
+- A [bot GitHub account](/get-started/set-up-your-bot-account/) with `GH_TOKEN` ready
 - A kipp•punkt license key (`KIPPPUNKT_LICENSE`). Optional, only needed for premium features
 
 ## Set up rootless Docker
